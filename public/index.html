@@ -886,22 +886,27 @@ function gameFlashCards() {
 
     const ctrls = $('div', { style: 'display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap;' },
       $('button', { textContent: '⬅️ Previous', onclick: () => { curIdx--; renderCard(); } }),
+      $('button', { textContent: '🔊 Pronounce', onclick: () => speakText(item.word) }),
       $('button', {
-        className: isLearned ? 'btn-g' : '',
-        textContent: isLearned ? '✅ Learned' : '⭐ Mark as Learned',
+        className: 'btn-p',
+        textContent: 'Next ➡️',
         onclick: () => {
-          if (isLearned) learned = learned.filter(w => w !== item.word);
-          else learned.push(item.word);
-          localStorage.setItem(learnedKey, JSON.stringify(learned));
+          if (!learned.includes(item.word)) {
+            learned.push(item.word);
+            localStorage.setItem(learnedKey, JSON.stringify(learned));
+          }
+          curIdx++;
           renderCard();
         }
       }),
-      $('button', { textContent: '🔊 Pronounce', onclick: () => speakText(item.word) }),
-      $('button', { textContent: 'Next ➡️', onclick: () => { curIdx++; renderCard(); } }),
       $('button', {
         className: 'btn-b',
         textContent: '🎲 Shuffle & Pick Random',
         onclick: () => {
+          if (!learned.includes(item.word)) {
+            learned.push(item.word);
+            localStorage.setItem(learnedKey, JSON.stringify(learned));
+          }
           curIdx = Math.floor(Math.random() * deck.length);
           renderCard();
         }
