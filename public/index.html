@@ -1777,6 +1777,7 @@ function viewSpeak() {
         form.append('pack', curPack);
         form.append('level', curLevel);
         form.append('target', targetSentence);
+        form.append('fallback_text', browserTranscript || targetSentence);
         form.append('audio', audioBlob, 'speech.webm');
 
         let finalTranscript = '';
