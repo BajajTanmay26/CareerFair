@@ -188,20 +188,15 @@ export async function onRequest(ctx) {
 
         if (sttRes.ok) {
           const sttJson = await sttRes.json();
-          if (sttJson.text) transcript = sttJson.text;
+          if (sttJson.text) transcript = sttJson.text.trim();
         }
       } catch (e) {
-        // Fallback to client transcript if network fails
+        // Fallback to client transcript
       }
     }
 
-    // If still no transcript, give a generous default based on target so it never crashes
-    if (!transcript) {
-      transcript = target;
-    }
-
     const passThreshold = parseInt(await kvGet(db, 'pass', '70'));
-    const acc = accuracy(target, transcript);
+    const acc = transcript ? accuracy(target, transcript) : 0;
     const passed = acc >= passThreshold;
 
     // Upsert score (keep best: highest level then highest acc)

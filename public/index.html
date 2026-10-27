@@ -1585,57 +1585,145 @@ function gameIdioms() {
   return wrap;
 }
 
-// ─── SPEAKING PACKS DATA ──────────────────────────────────────────────────────
-const SPEAK_SENTENCES = {
-  Everyday: [
-    "Say your name and one thing you love about English.",
-    "Describe your favourite book in three sentences.",
-    "Talk about a career you find interesting and why.",
-    "Explain what journalism means to you.",
-    "Share your favourite English idiom and its meaning.",
-    "Tell us about a place you want to visit and describe it vividly.",
-    "What does the word eloquence mean? Use it in a sentence.",
-    "Describe the plot of a movie you recently watched.",
-    "What are three qualities of a good communicator?",
-    "Explain the difference between a novel and a short story."
-  ],
-  Journalism: [
-    "Read this headline aloud and explain its meaning: Local Students Win National Debate Championship.",
-    "Describe the role of a journalist in a democratic society.",
-    "Read aloud: The editor reviewed the manuscript before it went to print.",
-    "Explain the five Ws of journalism: Who, What, When, Where, Why.",
-    "Read this lead sentence: Hundreds gathered at the city square to protest rising tuition fees.",
-    "Describe the difference between a news report and an editorial.",
-    "Read aloud: Investigative journalism exposes corruption and holds power accountable.",
-    "What is the role of social media in modern journalism?",
-    "Read and explain: The broadcaster delivered the breaking news with composure and clarity.",
-    "Describe what a press conference is and what happens there."
-  ],
-  Law: [
-    "Read aloud: The defendant pleaded not guilty to all charges.",
-    "Explain the difference between civil law and criminal law.",
-    "Read: The court interpreter translated the testimony with precision.",
-    "What does the term litigation mean? Use it in a sentence.",
-    "Read aloud: Advocacy requires both eloquence and evidence.",
-    "Describe the role of a lawyer in a courtroom.",
-    "Read: The judge overruled the objection and allowed the witness to continue.",
-    "What is a preamble? Read the preamble to the Indian Constitution.",
-    "Read aloud: Justice delayed is justice denied.",
-    "Explain what a legal brief is."
-  ],
-  Academic: [
-    "Read aloud: The hypothesis was tested through rigorous empirical research.",
-    "Explain the difference between a thesis and a dissertation.",
-    "Read: The bibliography listed over forty scholarly sources.",
-    "What does peer-reviewed mean in academic research?",
-    "Read aloud: Plagiarism undermines the integrity of academic work.",
-    "Describe the structure of a well-written academic essay.",
-    "Read: The curriculum emphasised critical thinking and linguistic analysis.",
-    "What is the difference between deductive and inductive reasoning?",
-    "Read aloud: The annotation provided contextual notes for each cited source.",
-    "Explain what a literature review is and why it matters in research."
-  ]
+// ─── DYNAMIC AI ENGLISH SENTENCE GENERATOR ────────────────────────────────────
+const SENTENCE_TEMPLATES = {
+  Everyday: {
+    openers: [
+      "In modern society, effective communication requires",
+      "Reading diverse literary genres consistently enhances",
+      "When expressing complex opinions in a discussion, one must",
+      "The true power of clear articulation lies in",
+      "Passionate writers and storytellers often find that",
+      "Developing a rich and expressive vocabulary enables individuals to",
+      "Active listening is just as crucial as speaking when",
+      "Language serves as a profound reflection of",
+      "Engaging regularly with classical and contemporary literature broadens",
+      "A thoughtful conversation between differing viewpoints always demands"
+    ],
+    cores: [
+      "patience, mutual empathy, and linguistic precision",
+      "both emotional sensitivity and intellectual curiosity",
+      "an appreciation for subtle emotional nuances",
+      "the courage to question assumptions and articulate fresh insights",
+      "a dedicated habit of disciplined creative thought",
+      "a keen awareness of tone, cadence, and audience perception",
+      "the balance between concise expression and vivid imagery",
+      "a deep curiosity about cultural traditions and global narratives"
+    ],
+    endings: [
+      "in our increasingly interconnected world.",
+      "during collaborative academic and personal endeavors.",
+      "whenever challenging ideas are debated openly.",
+      "across all spheres of everyday personal life.",
+      "for anyone aspiring to lead and inspire others.",
+      "to cultivate meaningful mutual understanding."
+    ]
+  },
+  Journalism: {
+    openers: [
+      "The investigative correspondent published a front-page exposé that",
+      "During the high-stakes press conference, reporters critically questioned",
+      "The chief editorial board thoroughly examined the implications of",
+      "Digital media platforms have fundamentally transformed how journalists report",
+      "A reliable news organization must always adhere to rigorous ethics when",
+      "Foreign correspondents stationed in volatile regions frequently risk danger to",
+      "The veteran broadcaster delivered the breaking headline with exceptional composure as",
+      "Fact-checkers worked tirelessly through the night to verify sources before",
+      "Investigative documentary filmmakers rely on extensive archival records to",
+      "A well-crafted news feature balances objective data with human narratives to"
+    ],
+    cores: [
+      "uncovered hidden financial irregularities within the municipal agency",
+      "scrutinized the contradictory statements issued by government spokespersons",
+      "highlighted the economic disparities affecting rural agricultural communities",
+      "investigated allegations of environmental negligence along the industrial corridor",
+      "illuminated the quiet heroism of community frontline emergency volunteers",
+      "analyzed the geopolitical fallout from the recent bilateral trade negotiations",
+      "explored how artificial intelligence is transforming contemporary newsrooms",
+      "documented the grassroots movement striving for broader educational access"
+    ],
+    endings: [
+      "before the final Sunday edition went to print.",
+      "in accordance with highest standards of public interest.",
+      "despite intense pushback from powerful corporate lobbyists.",
+      "while upholding the journalistic principles of truth and fairness.",
+      "to ensure citizens remain accurately and impartially informed.",
+      "across multiple global broadcast and streaming networks."
+    ]
+  },
+  Law: {
+    openers: [
+      "The senior advocate presented a compelling opening statement arguing that",
+      "During the appellate hearing, the bench scrutinized whether the statute violated",
+      "Constitutional jurisprudence emphasizes that procedural fairness must always",
+      "The legal brief meticulously cited three decades of supreme court precedents to",
+      "Cross-examination requires an astute attorney to identify logical fallacies when",
+      "The dispute resolution tribunal urged both corporate entities to consider",
+      "Fundamental statutory rights established under constitutional law cannot be",
+      "The public prosecutor introduced forensic documentary evidence demonstrating that",
+      "Judicial review serves as an indispensable check on legislative authority whenever",
+      "Meticulous legal drafting eliminates contractual ambiguities so that"
+    ],
+    cores: [
+      "substantive equality and individual liberty are safeguarded unconditionally",
+      "the binding contractual obligations were breached without lawful justification",
+      "the prosecution had failed to establish guilt beyond a reasonable doubt",
+      "every citizen receives adequate and competent legal representation",
+      "arbitrary governmental actions are restrained by the rule of law",
+      "intellectual property protections are balanced with equitable public access",
+      "the testimony of the primary witness was corroborated by circumstantial records",
+      "statutory interpretation aligns with the original legislative intent"
+    ],
+    endings: [
+      "pursuant to the established provisions of the Constitution.",
+      "in accordance with statutory provisions enacted by Parliament.",
+      "to prevent any miscarriage of substantive justice.",
+      "as affirmed by unanimous judicial bench rulings.",
+      "before the high court adjourns for the winter recess.",
+      "for the preservation of legal integrity and institutional trust."
+    ]
+  },
+  Academic: {
+    openers: [
+      "The interdisciplinary research symposium concluded that empirical methodologies must",
+      "Contemporary linguistic scholars hypothesize that structural syntax shifts reflect",
+      "A comprehensive review of the scholarly literature reveals significant correlation between",
+      "The doctoral thesis rigorously examined the socio-economic determinants of",
+      "Epistemological inquiries in contemporary philosophy continuously challenge the notion that",
+      "The peer-reviewed monograph demonstrated through qualitative field data that",
+      "Academic researchers must preserve intellectual rigor and methodology when",
+      "Comparative literary analysis juxtaposes classical tragic motifs against",
+      "The university ethics committee emphasized that academic integrity requires",
+      "The linguistic nuances observed in regional vernacular dialects underscore"
+    ],
+    cores: [
+      "differentiate conclusively between causal mechanisms and coincidental phenomena",
+      "interrogate historical biases embedded within traditional textbook curricula",
+      "integrate qualitative ethnography with quantitative econometric modeling",
+      "trace the evolutionary lineage of post-colonial narrative structures",
+      "evaluate the pedagogical efficacy of interactive digital learning modules",
+      "scrutinize the validity of hypotheses regarding language acquisition in adolescents",
+      "formulate robust theoretical frameworks to explain cultural paradigm shifts",
+      "reconcile conflicting anthropological interpretations of ancient manuscripts"
+    ],
+    endings: [
+      "across international academic journals and research faculties.",
+      "supported by extensive archival citations and primary source evidence.",
+      "to advance scholarly consensus within the humanities discipline.",
+      "published under the auspices of the university press.",
+      "thereby establishing a valuable precedent for prospective inquiries.",
+      "with meticulous fidelity to rigorous scientific conventions."
+    ]
+  }
 };
+
+function generateDynamicSentence(pack) {
+  const p = SENTENCE_TEMPLATES[pack] || SENTENCE_TEMPLATES.Everyday;
+  const op = p.openers[Math.floor(Math.random() * p.openers.length)];
+  const co = p.cores[Math.floor(Math.random() * p.cores.length)];
+  const en = p.endings[Math.floor(Math.random() * p.endings.length)];
+  return `${op} ${co} ${en}`;
+}
 
 function calcAccuracy(ref, hyp) {
   const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
@@ -1711,17 +1799,22 @@ function viewSpeak() {
 
   const loadSentence = () => {
     resultDisplay.replaceChildren();
-    const list = (CF.packs && CF.packs[curPack] && CF.packs[curPack].length) ? CF.packs[curPack] : (SPEAK_SENTENCES[curPack] || SPEAK_SENTENCES.Everyday);
-    const pool = list.filter(s => s !== targetSentence);
-    targetSentence = pool.length ? pool[Math.floor(Math.random() * pool.length)] : list[0];
+    // Generate fresh dynamic sentence
+    let newSentence = generateDynamicSentence(curPack);
+    let attempts = 0;
+    while (newSentence === targetSentence && attempts < 5) {
+      newSentence = generateDynamicSentence(curPack);
+      attempts++;
+    }
+    targetSentence = newSentence;
     sentenceDisplay.textContent = `"${targetSentence}"`;
   };
 
-  // Recording logic with automatic fallback to Web Speech Recognition
+  // Recording logic with REAL speech recognition and honest evaluation
   recordBtn.onclick = async () => {
     const name = nameInput.value.trim();
     if (!name) {
-      alert('Please enter your first name before recording.');
+      alert('Please enter your name before recording.');
       return;
     }
     STUDENT_NAME = name;
@@ -1747,20 +1840,21 @@ function viewSpeak() {
         if (e.data && e.data.size > 0) audioChunks.push(e.data);
       };
 
-      // Set up concurrent browser speech recognition as backup
+      // Real Speech Recognition with live stream
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
         try {
           speechRec = new SpeechRecognition();
           speechRec.lang = 'en-US';
           speechRec.continuous = true;
-          speechRec.interimResults = false;
+          speechRec.interimResults = true;
+          speechRec.maxAlternatives = 1;
           speechRec.onresult = (ev) => {
-            for (let i = ev.resultIndex; i < ev.results.length; ++i) {
-              if (ev.results[i].isFinal) {
-                browserTranscript += ' ' + ev.results[i][0].transcript;
-              }
+            let combined = '';
+            for (let i = 0; i < ev.results.length; ++i) {
+              combined += ' ' + ev.results[i][0].transcript;
             }
+            browserTranscript = combined.trim();
           };
           speechRec.start();
         } catch (e) {
@@ -1772,30 +1866,40 @@ function viewSpeak() {
         stream.getTracks().forEach(t => t.stop());
         const audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
 
+        // Small pause to allow speech recognizer to flush final tokens
+        await new Promise(r => setTimeout(r, 350));
+
+        const heardSpoken = browserTranscript.trim();
+
         const form = new FormData();
         form.append('name', STUDENT_NAME);
         form.append('pack', curPack);
         form.append('level', curLevel);
         form.append('target', targetSentence);
-        form.append('fallback_text', browserTranscript || targetSentence);
+        form.append('fallback_text', heardSpoken);
         form.append('audio', audioBlob, 'speech.webm');
 
+        // Try ElevenLabs backend
+        const evalRes = await api('attempt', { method: 'POST', body: form });
+
         let finalTranscript = '';
+        if (evalRes && !evalRes.error && evalRes.transcript && evalRes.transcript.trim() !== '') {
+          finalTranscript = evalRes.transcript.trim();
+        } else {
+          finalTranscript = heardSpoken;
+        }
+
+        // REAL HONEST EVALUATION:
         let acc = 0;
         let passThreshold = CF.pass || 70;
         let passed = false;
 
-        // Try ElevenLabs backend first
-        const evalRes = await api('attempt', { method: 'POST', body: form });
-
-        if (evalRes && !evalRes.error && evalRes.transcript !== undefined) {
-          finalTranscript = evalRes.transcript;
-          acc = evalRes.acc;
-          passThreshold = evalRes.passThreshold || passThreshold;
-          passed = evalRes.passed;
+        if (!finalTranscript) {
+          // If student spoke nothing or mic was silent
+          acc = 0;
+          passed = false;
         } else {
-          // Seamless fallback to browser speech recognition
-          finalTranscript = browserTranscript.trim() || targetSentence;
+          // Genuine word-level & character-level comparison
           acc = calcAccuracy(targetSentence, finalTranscript);
           passed = acc >= passThreshold;
         }
@@ -1803,13 +1907,30 @@ function viewSpeak() {
         recordBtn.textContent = '🎙️ Start Recording';
         recordBtn.disabled = false;
 
+        if (!finalTranscript) {
+          resultDisplay.replaceChildren(
+            $('div', {
+              style: 'padding:16px;border-radius:14px;border:3px solid var(--r);background:#fff;'
+            },
+              $('h3', { style: 'color:var(--r);font-size:22px;', textContent: '⚠️ No Speech Detected' }),
+              $('p', { style: 'margin:8px 0;font-size:15px;' }, 'We could not detect clear English speech from your microphone. Please speak into the mic clearly and try again!'),
+              $('button', {
+                style: 'margin-top:10px;',
+                textContent: 'Try Again 🔁',
+                onclick: () => resultDisplay.replaceChildren()
+              })
+            )
+          );
+          return;
+        }
+
         resultDisplay.replaceChildren(
           $('div', {
             style: `padding:16px;border-radius:14px;border:3px solid ${passed ? 'var(--g)' : 'var(--y)'};background:#fff;`
           },
-            $('h3', { style: `color:${passed ? '#0a9968' : 'var(--ink)'};font-size:22px;`, textContent: passed ? '🎉 Level Passed!' : 'Keep Practicing!' }),
-            $('p', { style: 'margin:8px 0;font-size:15px;' }, $('strong', { textContent: 'What we heard: ' }), `"${finalTranscript || '(Spoken clearly)'}"`),
-            $('p', { style: 'font-size:18px;font-weight:800;color:var(--p-dark);' }, `Speaking Accuracy: ${acc}% (Required: ${passThreshold}%)`),
+            $('h3', { style: `color:${passed ? '#0a9968' : 'var(--ink)'};font-size:22px;`, textContent: passed ? '🎉 Excellent! Level Passed!' : 'Good Effort! Try Again' }),
+            $('p', { style: 'margin:8px 0;font-size:15px;' }, $('strong', { textContent: 'What was heard: ' }), `"${finalTranscript}"`),
+            $('p', { style: 'font-size:18px;font-weight:800;color:var(--p-dark);' }, `Speaking Accuracy: ${acc}% (Passing threshold: ${passThreshold}%)`),
             passed ? $('button', {
               className: 'btn-g',
               style: 'margin-top:10px;',
@@ -1830,6 +1951,10 @@ function viewSpeak() {
 
       mediaRecorder.start(200);
       recordBtn.textContent = '⏹️ Stop Recording & Check';
+    } catch (err) {
+      alert('Microphone access was denied or is not supported. Please allow microphone permissions in your browser address bar.');
+    }
+  };
     } catch (err) {
       alert('Microphone access was denied or is not supported. Please allow microphone permissions in your browser address bar.');
     }
