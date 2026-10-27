@@ -1,0 +1,2146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Class Xth D · English Careers Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1b1b3a;
+  --y: #ffd23f;
+  --r: #ff5d73;
+  --b: #2ec4ff;
+  --p: #7b4dff;
+  --p-dark: #5c35cc;
+  --g: #2ed9a0;
+  --bg: #f3efff;
+  --card: #ffffff;
+  --border: 3px solid var(--ink);
+  --shadow: 0 4px 0 var(--ink);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 600 16px/1.55 Nunito, system-ui, sans-serif;
+  min-height: 100vh;
+}
+h1, h2, h3, h4, button, .tag, .brand, .ladder-title {
+  font-family: Fredoka, system-ui, sans-serif;
+}
+header {
+  background: linear-gradient(135deg, var(--p) 0%, var(--p-dark) 100%);
+  color: #fff;
+  padding: 26px 16px 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(27,27,58,0.15);
+}
+.banner-alert {
+  background: var(--y);
+  color: var(--ink);
+  padding: 8px 16px;
+  font-weight: 800;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 12px;
+  border: 2px solid var(--ink);
+  box-shadow: 0 2px 0 var(--ink);
+  font-size: 14px;
+}
+.timer-pill {
+  background: var(--r);
+  color: #fff;
+  padding: 6px 14px;
+  font-weight: 800;
+  border-radius: 999px;
+  display: inline-block;
+  margin: 6px 8px;
+  border: 2px solid #fff;
+  font-size: 14px;
+}
+.grade-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  border: 1px solid rgba(255,255,255,0.4);
+}
+h1 {
+  font-size: clamp(28px, 6vw, 44px);
+  line-height: 1.15;
+  margin-bottom: 6px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+header p {
+  color: rgba(255,255,255,0.92);
+  font-size: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+#lad {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  margin-top: 16px;
+  height: 48px;
+}
+#lad i {
+  width: 18px;
+  border-radius: 6px 6px 0 0;
+  border: 2px solid var(--ink);
+  border-bottom: 0;
+  transition: transform 0.2s;
+}
+#lad i:hover { transform: translateY(-4px); }
+
+nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  background: rgba(243, 239, 255, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+  border-bottom: 2px solid rgba(27,27,58,0.1);
+  scrollbar-width: thin;
+}
+nav::-webkit-scrollbar { height: 4px; }
+nav::-webkit-scrollbar-thumb { background: var(--p); border-radius: 4px; }
+
+button, .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: var(--border);
+  border-radius: 14px;
+  padding: 10px 18px;
+  background: var(--y);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+}
+button:hover { background: #ffe066; }
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--ink);
+}
+button.on {
+  background: var(--p);
+  color: #fff;
+}
+button.btn-r { background: var(--r); color: #fff; }
+button.btn-b { background: var(--b); color: var(--ink); }
+button.btn-g { background: var(--g); color: var(--ink); }
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+main {
+  max-width: 1080px;
+  margin: auto;
+  padding: 18px 16px 60px;
+}
+
+.c {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 20px 22px;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+.subbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed rgba(27,27,58,0.15);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px;
+  border: var(--border);
+  box-shadow: 0 3px 0 var(--ink);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease;
+}
+.card:hover { transform: translateY(-3px); }
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.card-icon {
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.card h3 {
+  font-size: 19px;
+  color: var(--p-dark);
+  line-height: 1.25;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1.5px solid var(--ink);
+  margin-top: 4px;
+}
+.badge-y { background: var(--y); }
+.badge-b { background: var(--b); }
+.badge-g { background: var(--g); }
+.badge-r { background: var(--r); color: #fff; }
+.card p {
+  font-size: 14.5px;
+  color: #33334d;
+  margin: 6px 0;
+  flex-grow: 1;
+}
+.card-meta {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1.5px dashed rgba(27,27,58,0.15);
+  font-size: 13px;
+  color: #555577;
+}
+.card-meta strong { color: var(--ink); }
+
+input, select, textarea {
+  font: inherit;
+  padding: 10px 14px;
+  border: var(--border);
+  border-radius: 12px;
+  width: 100%;
+  margin: 6px 0 12px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 600;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 3px solid var(--b);
+  outline-offset: 2px;
+}
+textarea { min-height: 110px; font-family: monospace; font-size: 14px; }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 16px;
+  border: var(--border);
+  overflow: hidden;
+}
+th {
+  background: var(--p);
+  color: #fff;
+  padding: 12px 14px;
+  font-family: Fredoka, sans-serif;
+  text-align: left;
+  font-size: 15px;
+}
+td {
+  padding: 11px 14px;
+  border-bottom: 1.5px solid rgba(27,27,58,0.08);
+  font-size: 14.5px;
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #faf8ff; }
+
+/* Word Tile */
+.t {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 4px;
+  border-radius: 12px;
+  border: var(--border);
+  font-size: 24px;
+  font-weight: 800;
+  background: #fff;
+  font-family: Fredoka, sans-serif;
+}
+.ok { background: var(--g) !important; color: var(--ink); }
+.mid { background: var(--y) !important; color: var(--ink); }
+.no { background: #dcd7ee !important; color: #555577; }
+.bad { background: var(--r) !important; color: #fff; }
+
+/* Flash Cards */
+.flashcard {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 520px;
+  height: 290px;
+  margin: 16px auto;
+  cursor: pointer;
+}
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+.flashcard-front {
+  background: linear-gradient(135deg, #fff 0%, #f4efff 100%);
+}
+.flashcard-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  text-align: left;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+/* Crossword */
+.cw-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 42px);
+  gap: 2px;
+  background: var(--ink);
+  padding: 4px;
+  border-radius: 12px;
+  border: var(--border);
+  width: fit-content;
+  margin: 12px auto;
+}
+.cw-cell {
+  width: 42px;
+  height: 42px;
+  position: relative;
+  background: #fff;
+}
+.cw-cell.black { background: var(--ink); }
+.cw-cell input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  background: transparent;
+  font-family: Fredoka, sans-serif;
+}
+.cw-num {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  font-size: 9px;
+  font-weight: 800;
+  color: #777;
+  pointer-events: none;
+}
+
+footer {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 13.5px;
+  color: #555577;
+  border-top: 2px dashed rgba(27,27,58,0.15);
+  margin-top: 30px;
+}
+footer a { color: var(--p); text-decoration: none; font-weight: 700; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .cw-grid { grid-template-columns: repeat(8, 36px); }
+  .cw-cell { width: 36px; height: 36px; }
+  .cw-cell input { font-size: 16px; }
+  .flashcard { height: 320px; }
+  .t { width: 40px; height: 40px; font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div id="banner-wrap"></div>
+  <h1>Class Xth D · English Careers Hub</h1>
+  <p>Discover English-powered careers, colleges across Maharashtra &amp; abroad, competitive exams, voice-recognition speaking challenges &amp; interactive language games!</p>
+  <div id="timer-wrap"></div>
+  <div id="lad"></div>
+</header>
+
+<nav id="nav"></nav>
+
+<main id="m"></main>
+
+<footer>
+  <p><strong>Class Xth D</strong> · Guided by the English Department</p>
+  <p style="margin-top:4px;">Speech recognition powered by <strong>ElevenLabs API</strong> · Dictionary by Free Dictionary API</p>
+  <p style="margin-top:4px; font-size:12px;">Dates &amp; eligibility rules change annually; always cross-verify with official university bulletins.</p>
+</footer>
+
+<script>
+// ─── UTILITY HELPERS ──────────────────────────────────────────────────────────
+const $ = (t, p = {}, ...k) => {
+  const e = Object.assign(document.createElement(t), p);
+  k.forEach(x => {
+    if (x === null || x === undefined) return;
+    if (typeof x === 'string' || typeof x === 'number') e.appendChild(document.createTextNode(x));
+    else e.appendChild(x);
+  });
+  return e;
+};
+const M = document.getElementById('m');
+const N = document.getElementById('nav');
+
+let CF = { pass: 70, banner: '', timer: 0, packs: {} };
+let ADMIN_KEY = localStorage.getItem('hub_admin_key') || '';
+let STUDENT_NAME = localStorage.getItem('hub_student_name') || '';
+
+async function api(path, opts = {}) {
+  const headers = { ...(opts.headers || {}) };
+  if (ADMIN_KEY) headers['Authorization'] = 'Bearer ' + ADMIN_KEY;
+  try {
+    const res = await fetch('/api/' + path, { ...opts, headers });
+    return await res.json();
+  } catch (err) {
+    return { error: 'Network or server error' };
+  }
+}
+
+function speakText(text) {
+  if (!('speechSynthesis' in window)) {
+    alert('Text-to-speech is not supported on this browser.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.95;
+  window.speechSynthesis.speak(u);
+}
+
+// ─── CAREERS DATA (Title Cased) ───────────────────────────────────────────────
+const CAREERS = [
+  { title: "Journalist", icon: "📰", cat: "Media", desc: "Investigate, report, and write breaking news stories, features, and analysis for print, digital, and television networks.", skills: "Investigative Research, Clear Writing, Interviewing, Ethics", salary: "₹4.5L – ₹18L/yr" },
+  { title: "Content Writer & Copywriter", icon: "✍️", cat: "Marketing", desc: "Craft compelling brand narratives, blog articles, ad campaigns, and website copy that engage readers and drive conversions.", skills: "SEO, Creative Writing, Storytelling, Audience Empathy", salary: "₹3.8L – ₹15L/yr" },
+  { title: "English Teacher & Professor", icon: "🎓", cat: "Education", desc: "Teach literature, syntax, critical thinking, and creative writing at schools, prep institutions, or universities.", skills: "Pedagogy, Literary Analysis, Mentorship, Public Speaking", salary: "₹4.0L – ₹22L/yr" },
+  { title: "Translator & Interpreter", icon: "🌐", cat: "Linguistics", desc: "Bridge linguistic barriers by translating documents or providing real-time spoken interpretation in diplomatic, medical, or legal settings.", skills: "Bilingual Fluency, Cultural Nuance, Active Listening", salary: "₹4.5L – ₹16L/yr" },
+  { title: "Editor & Publishing Executive", icon: "📚", cat: "Publishing", desc: "Shape manuscripts, commission new titles, refine prose, and manage book releases for leading publishing houses and literary magazines.", skills: "Structural Editing, Proofreading, Market Awareness", salary: "₹5.0L – ₹20L/yr" },
+  { title: "Advocate & Legal Counselor", icon: "⚖️", cat: "Law", desc: "Harness precision language, persuasive rhetoric, and extensive statutory research to draft contracts, represent clients, and argue in courts.", skills: "Argumentation, Legal Drafting, Rhetoric, Critical Analysis", salary: "₹6.0L – ₹35L+/yr" },
+  { title: "Public Relations Manager", icon: "📣", cat: "Corporate", desc: "Build brand reputation, draft press releases, handle crisis communication, and liaise with major news outlets.", skills: "Crisis Management, Strategic Messaging, Networking", salary: "₹5.5L – ₹25L/yr" },
+  { title: "Voice-Over Artist & Broadcaster", icon: "🎙️", cat: "Entertainment", desc: "Voice commercials, audiobooks, animated series, video games, radio broadcasts, and documentary narrations.", skills: "Diction, Vocal Modulation, Breath Control, Pacing", salary: "₹3.5L – ₹20L+/yr" },
+  { title: "Technical Writer", icon: "💻", cat: "Tech", desc: "Transform complicated software, engineering, and medical specs into user guides, API documentation, and tutorials.", skills: "Clarity, Technical Comprehension, Structural Logic", salary: "₹6.0L – ₹24L/yr" },
+  { title: "Screenwriter & Playwright", icon: "🎬", cat: "Creative", desc: "Write scripts for cinema, OTT series, theater productions, and audio dramas with vivid dialogue and character arcs.", skills: "Dialogue Writing, Pacing, Scene Building, Dramatic Structure", salary: "₹5.0L – ₹30L+/yr" },
+  { title: "Speechwriter & Political Aide", icon: "🏛️", cat: "Public Policy", desc: "Write inspiring, high-stakes keynote addresses and speeches for diplomats, business CEOs, and political leaders.", skills: "Persuasive Rhetoric, Cadence, Brevity, World Affairs", salary: "₹7.0L – ₹28L/yr" },
+  { title: "Lexicographer & Linguist", icon: "📖", cat: "Research", desc: "Study language evolution, catalog new vocabulary, compile modern dictionaries, and build NLP language models for tech companies.", skills: "Etymology, Phonology, Semantic Analysis, Corpus Research", salary: "₹5.0L – ₹18L/yr" },
+  { title: "Corporate Communications Lead", icon: "🏢", cat: "Corporate", desc: "Direct internal messaging, annual reports, executive letters, and company culture announcements for global enterprises.", skills: "Executive Presence, Business English, Cross-cultural Comm", salary: "₹8.0L – ₹32L/yr" },
+  { title: "Literary Agent", icon: "🤝", cat: "Publishing", desc: "Discover promising authors, negotiate book deals with major publishers, and safeguard intellectual property rights.", skills: "Publishing Contracts, Literary Taste, Negotiation", salary: "₹5.0L – ₹22L/yr" },
+  { title: "Podcaster & Audio Producer", icon: "🎧", cat: "Digital Media", desc: "Host, script, interview, and produce audio shows covering culture, history, investigative reporting, and science.", skills: "Audio Storytelling, Interviewing, Sound Design, Scripting", salary: "₹3.5L – ₹18L/yr" },
+  { title: "Advertising Creative Director", icon: "💡", cat: "Advertising", desc: "Devise iconic taglines, viral storytelling campaigns, and brand concepts that stick in the cultural memory.", skills: "Wordplay, Conceptual Thinking, Visual Storytelling", salary: "₹8.0L – ₹40L+/yr" }
+];
+
+// ─── COLLEGES DATA ────────────────────────────────────────────────────────────
+const COLLEGES = {
+  Maharashtra: [
+    { name: "St. Xavier’s College, Mumbai", loc: "Fort, Mumbai", courses: "BA English Literature, Mass Media (BAMMC)", notes: "Autonomous heritage institution; legendary literary festival 'Malhar'; premier faculty." },
+    { name: "Elphinstone College, Mumbai", loc: "Fort, Mumbai", courses: "BA in English Literature, Linguistics", notes: "Founded in 1856; one of the oldest universities in Western India with historic literary archives." },
+    { name: "Ramnarain Ruia College, Mumbai", loc: "Matunga, Mumbai", courses: "BA English, Communication Studies", notes: "Grade A+ accredited; active drama club and creative writing workshops." },
+    { name: "K.C. College, Mumbai", loc: "Churchgate, Mumbai", courses: "BA English, Journalism, Advertising", notes: "Under HSNC University; prime corporate & media industry connectivity." },
+    { name: "Sophia College for Women, Mumbai", loc: "Bhulabhai Desai Rd, Mumbai", courses: "BA English Literature, Creative Writing", notes: "Renowned literary magazine 'Sophia Mirror'; serene campus and distinguished alumni." },
+    { name: "Fergusson College, Pune", loc: "FC Road, Pune", courses: "BA English, Linguistics, Comparative Literature", notes: "Autonomous landmark institution; produced top diplomats, authors, and scholars." },
+    { name: "Savitribai Phule Pune University (SPPU)", loc: "Ganeshkhind, Pune", courses: "MA English, Research Degrees, Postgrad Diplomas", notes: "State university with one of the most respected Department of English libraries in India." },
+    { name: "Symbiosis College of Arts & Commerce, Pune", loc: "SB Road, Pune", courses: "BA English Special, Liberal Arts", notes: "Vibrant global campus with international student exchange programs." },
+    { name: "Hislop College, Nagpur", loc: "Civil Lines, Nagpur", courses: "BA English, Communicative English", notes: "One of Vidarbha's oldest collegiate centers; strong heritage in humanities." },
+    { name: "Tata Institute of Social Sciences (TISS)", loc: "Deonar, Mumbai", courses: "MA in Media & Cultural Studies", notes: "National leader in critical social theory, cultural analysis, and public policy communication." }
+  ],
+  RestOfIndia: [
+    { name: "Miranda House & St. Stephen’s (DU)", loc: "Delhi University North Campus", courses: "BA (Hons) English Literature", notes: "India's top NIRF humanities rankings; rigorous seminar-style academic critique." },
+    { name: "Lady Shri Ram College for Women (LSR)", loc: "New Delhi", courses: "BA (Hons) English, Journalism", notes: "Distinguished alumni in international journalism, publishing, and public affairs." },
+    { name: "English & Foreign Languages University (EFLU)", loc: "Hyderabad, Telangana", courses: "BA & MA English, Linguistics, Phonetics", notes: "Central university dedicated entirely to English and foreign languages education." },
+    { name: "Christ University, Bengaluru", loc: "Hosur Road, Bengaluru", courses: "BA English, Cultural Studies, Media", notes: "Excellent placement infrastructure and interdisciplinary humanities curriculum." },
+    { name: "Indian Institute of Mass Communication (IIMC)", loc: "New Delhi & Dhenkanal", courses: "PG Diploma in English Journalism", notes: "Premier government institute for print, broadcast, and digital news training." },
+    { name: "Presidency University, Kolkata", loc: "College Street, Kolkata", courses: "BA (Hons) English", notes: "Historic cradle of modern Indian English scholarship and literary thought." }
+  ],
+  Abroad: [
+    { name: "University of Oxford", loc: "Oxford, United Kingdom", courses: "BA English Language & Literature", notes: "World #1 for humanities; tutorial system; Bodleian Library access." },
+    { name: "University of Cambridge", loc: "Cambridge, United Kingdom", courses: "English Tripos", notes: "Focuses on rigorous close-reading and chronological literary periods." },
+    { name: "Columbia University", loc: "New York City, USA", courses: "BA English & Comparative Literature", notes: "Administers the Pulitzer Prizes; heart of NYC publishing and media industries." },
+    { name: "New York University (NYU)", loc: "Manhattan, USA", courses: "English, Dramatic Writing, Creative Writing", notes: "Renowned MFA creative writing program led by world-famous authors." },
+    { name: "University of Toronto", loc: "Toronto, Canada", courses: "BA English Literature & Book History", notes: "Canada's top university; extensive media and rhetoric research centers." },
+    { name: "University of Melbourne", loc: "Melbourne, Australia", courses: "Bachelor of Arts in English & Creative Writing", notes: "Leading Southern Hemisphere institution with global scholarship pipelines." },
+    { name: "Leiden University", loc: "Leiden, Netherlands", courses: "BA English Language & Culture", notes: "Europe's leading English linguistics and Anglo-Saxon manuscripts archive." }
+  ]
+};
+
+// ─── EXAMS DATA ───────────────────────────────────────────────────────────────
+const EXAMS = [
+  { name: "CUET-UG", cat: "National Entrance", forWho: "BA (Hons) English & Journalism across Central & State Universities (DU, JNU, BHU, etc.)", format: "Computer-Based MCQ: English Language comprehension, vocabulary, grammar", date: "May – June annually" },
+  { name: "CLAT (Common Law Admission Test)", cat: "Law", forWho: "BA-LLB programs at 24+ National Law Universities (NLUs) in India", format: "120 MCQs; heavy English reading comprehension, legal & logical reasoning", date: "December annually" },
+  { name: "AILET (All India Law Entrance)", cat: "Law", forWho: "BA-LLB at National Law University (NLU) Delhi", format: "Speed & accuracy reading test with critical English logic", date: "December annually" },
+  { name: "IIMC Entrance Exam", cat: "Journalism", forWho: "Postgraduate Diploma in English Journalism at IIMC centers", format: "Essay writing, news analysis, general awareness & editing aptitude", date: "Conducted via CUET-PG" },
+  { name: "EFLU Entrance Test", cat: "Language Specialist", forWho: "BA (Hons) English, Foreign Languages, and Linguistics at EFLU", format: "Grammar, phonetic appreciation, vocabulary in context", date: "Conducted via CUET-UG" },
+  { name: "MAH-B.Ed CET", cat: "Teaching in Maharashtra", forWho: "Teacher training colleges across Maharashtra for English educators", format: "Mental ability, teacher aptitude, English language proficiency", date: "March – April annually" },
+  { name: "IELTS Academic", cat: "Study Abroad", forWho: "Admission to UK, Canada, Australia, NZ, and Europe universities", format: "4 modules: Listening, Reading, Writing, and 1-on-1 Speaking test", date: "Held throughout the year" },
+  { name: "TOEFL iBT", cat: "Study Abroad", forWho: "Standardized test preferred widely by US and global colleges", format: "Integrated computer-based test covering Academic English across 4 skills", date: "Held weekly" },
+  { name: "SAT / Digital SAT", cat: "US Undergrad", forWho: "Undergraduate degree applications to American & international universities", format: "Reading & Writing module + Math module with adaptive difficulty", date: "Multiple windows (Aug, Oct, Dec, March, May)" },
+  { name: "UPSC Civil Services (IAS/IFS)", cat: "Government Leadership", forWho: "Eligible after graduation; English comprehension is tested in CSAT & Mains", format: "Compulsory English qualifying paper + optional subjects in English Literature", date: "Prelims in May/June, Mains in Sep" }
+];
+
+// ─── WORD BANKS FOR FLASH CARDS & DICTIONARY ──────────────────────────────────
+const CARDS_CAREER = [
+  { word: "Rhetoric", phonetic: "/ˈret.ər.ɪk/", pos: "noun", meaning: "The art of effective or persuasive speaking or writing.", sentence: "Her speech was full of inspiring rhetoric that united the room.", origin: "Greek 'rhētorikē' (art of an orator)" },
+  { word: "Eloquence", phonetic: "/ˈel.ə.kwəns/", pos: "noun", meaning: "Fluent, graceful, or persuasive speaking or writing.", sentence: "The defense lawyer argued with remarkable eloquence.", origin: "Latin 'eloqui' (to speak out)" },
+  { word: "Articulate", phonetic: "/ɑːˈtɪk.jə.lət/", pos: "adjective", meaning: "Having or showing the ability to speak fluently and coherently.", sentence: "An articulate spokesperson is essential during a company crisis.", origin: "Latin 'articulatus' (divided into joints)" },
+  { word: "Manuscript", phonetic: "/ˈmæn.jə.skrɪpt/", pos: "noun", meaning: "A book, document, or piece of music written by hand rather than typed or printed.", sentence: "The author submitted her completed manuscript to the publisher.", origin: "Latin 'manu scriptus' (written by hand)" },
+  { word: "Editorial", phonetic: "/ˌed.ɪˈtɔː.ri.əl/", pos: "noun", meaning: "A newspaper article written by or on behalf of an editor that gives an opinion.", sentence: "The Sunday editorial examined the government's education policy.", origin: "Latin 'editor' (one who brings forth)" },
+  { word: "Litigation", phonetic: "/ˌlɪt.ɪˈɡeɪ.ʃən/", pos: "noun", meaning: "The process of taking legal action in a court of law.", sentence: "The company resolved the trademark dispute without lengthy litigation.", origin: "Latin 'litigare' (to dispute)" },
+  { word: "Advocacy", phonetic: "/ˈæd.və.kə.si/", pos: "noun", meaning: "Public support for or recommendation of a particular cause or policy.", sentence: "Her persistent advocacy led to improved library funding.", origin: "Latin 'advocare' (to call to one's aid)" },
+  { word: "Lexicon", phonetic: "/ˈlek.sɪ.kən/", pos: "noun", meaning: "The vocabulary of a person, language, or branch of knowledge.", sentence: "Digital media has added numerous terms to our daily lexicon.", origin: "Greek 'lexikon' (word book)" },
+  { word: "Syntax", phonetic: "/ˈsɪn.tæks/", pos: "noun", meaning: "The arrangement of words and phrases to create well-formed sentences.", sentence: "Poets frequently experiment with unconventional syntax.", origin: "Greek 'syntaxis' (together arrangement)" },
+  { word: "Semantics", phonetic: "/sɪˈmæn.tɪks/", pos: "noun", meaning: "The branch of linguistics and logic concerned with meaning.", sentence: "Let us not argue over mere semantics; focus on the core issue.", origin: "Greek 'semantikos' (significant meaning)" },
+  { word: "Nuance", phonetic: "/ˈnjuː.ɑːns/", pos: "noun", meaning: "A subtle difference in or shade of meaning, expression, or sound.", sentence: "A skilled translator preserves every delicate cultural nuance.", origin: "French 'nuer' (to shade)" },
+  { word: "Concise", phonetic: "/kənˈsaɪs/", pos: "adjective", meaning: "Giving a lot of information clearly and in few words; brief.", sentence: "Keep your news headlines concise and immediately punchy.", origin: "Latin 'concisus' (cut short)" },
+  { word: "Preamble", phonetic: "/priːˈæm.bəl/", pos: "noun", meaning: "A preliminary or preparatory statement; an introduction.", sentence: "We studied the Preamble to the Constitution of India in class.", origin: "Latin 'praeambulare' (to walk before)" },
+  { word: "Synopsis", phonetic: "/sɪˈnɒp.sɪs/", pos: "noun", meaning: "A brief summary or general survey of something.", sentence: "Please submit a two-page synopsis of your novel proposal.", origin: "Greek 'sunopsis' (general view)" },
+  { word: "Pedagogy", phonetic: "/ˈped.ə.ɡɒdʒ.i/", pos: "noun", meaning: "The method and practice of teaching, especially as an academic subject.", sentence: "Innovative pedagogy makes grammar lessons lively and memorable.", origin: "Greek 'paidagogia' (leading of a child)" },
+  { word: "Plagiarism", phonetic: "/ˈpleɪ.dʒər.ɪ.zəm/", pos: "noun", meaning: "The practice of taking someone else's work or ideas and passing them off as one's own.", sentence: "Academic integrity strictly prohibits any form of plagiarism.", origin: "Latin 'plagiarius' (kidnapper)" }
+];
+
+const CARDS_SAT = [
+  { word: "Ubiquitous", phonetic: "/juːˈbɪk.wɪ.təs/", pos: "adjective", meaning: "Present, appearing, or found everywhere.", sentence: "Smartphones have become ubiquitous in modern urban life.", origin: "Latin 'ubique' (everywhere)" },
+  { word: "Ephemeral", phonetic: "/ɪˈfem.ər.əl/", pos: "adjective", meaning: "Lasting for a very short time; transient.", sentence: "The beauty of cherry blossoms is cherished because it is ephemeral.", origin: "Greek 'ephemeros' (lasting only one day)" },
+  { word: "Ambiguous", phonetic: "/æmˈbɪɡ.ju.əs/", pos: "adjective", meaning: "Open to more than one interpretation; having a double meaning.", sentence: "The contract clause was ambiguous and required judicial review.", origin: "Latin 'ambigere' (to wander, dispute)" },
+  { word: "Pragmatic", phonetic: "/præɡˈmæt.ɪk/", pos: "adjective", meaning: "Dealing with things sensibly and realistically based on practical factors.", sentence: "She took a pragmatic approach to preparing for the board exams.", origin: "Greek 'pragma' (deed, act)" },
+  { word: "Meticulous", phonetic: "/məˈtɪk.jə.ləs/", pos: "adjective", meaning: "Showing great attention to detail; very careful and precise.", sentence: "The sub-editor was meticulous in checking historical facts.", origin: "Latin 'metus' (fear, careful anxiety)" },
+  { word: "Tenacious", phonetic: "/təˈneɪ.ʃəs/", pos: "adjective", meaning: "Tending to keep a firm hold of something; clinging or determined.", sentence: "Her tenacious research uncovered documents hidden for decades.", origin: "Latin 'tenax' (holding fast)" },
+  { word: "Benevolent", phonetic: "/bəˈnev.əl.ənt/", pos: "adjective", meaning: "Well meaning and kindly; serving a charitable purpose.", sentence: "The benevolent benefactor established scholarship endowments for students.", origin: "Latin 'bene volens' (wishing well)" },
+  { word: "Juxtapose", phonetic: "/ˌdʒʌk.stəˈpəʊz/", pos: "verb", meaning: "Place or deal with close together for contrasting effect.", sentence: "The essay juxtaposed Victorian societal rules with contemporary liberty.", origin: "Latin 'juxta' (next to) + French 'poser'" },
+  { word: "Paradox", phonetic: "/ˈpær.ə.dɒks/", pos: "noun", meaning: "A seemingly absurd or self-contradictory statement that proves true.", sentence: "The phrase 'less is more' is an architectural and literary paradox.", origin: "Greek 'para' (contrary to) + 'doxa' (opinion)" },
+  { word: "Empirical", phonetic: "/ɪmˈpɪr.ɪ.kəl/", pos: "adjective", meaning: "Based on, concerned with, or verifiable by observation rather than pure theory.", sentence: "Linguists require empirical evidence before classifying dialect shifts.", origin: "Greek 'empeiria' (experience)" },
+  { word: "Resilient", phonetic: "/rɪˈzɪl.jənt/", pos: "adjective", meaning: "Able to withstand or recover quickly from difficult conditions.", sentence: "Resilient students view constructive critique as an avenue for growth.", origin: "Latin 'resilire' (to leap back)" },
+  { word: "Plausible", phonetic: "/ˈplɔː.zə.bəl/", pos: "adjective", meaning: "Seeming reasonable or probable; worthy of approval.", sentence: "The detective presented a plausible explanation of the mysterious event.", origin: "Latin 'plausibilis' (worthy of applause)" },
+  { word: "Inference", phonetic: "/ˈɪn.fər.əns/", pos: "noun", meaning: "A conclusion reached on the basis of evidence and reasoning.", sentence: "Reading comprehension questions test your ability to draw valid inferences.", origin: "Latin 'inferre' (to bring in)" },
+  { word: "Scrutinize", phonetic: "/ˈskruː.tɪ.naɪz/", pos: "verb", meaning: "Examine or inspect closely and thoroughly.", sentence: "The peer review panel will scrutinize every citation in the paper.", origin: "Latin 'scrutinium' (a search)" }
+];
+
+// ─── NAV TABS CONTROLLER ──────────────────────────────────────────────────────
+const TABS = {
+  Careers: viewCareers,
+  Colleges: viewColleges,
+  Exams: viewExams,
+  Games: viewGames,
+  Speak: viewSpeak,
+  Leaderboard: viewLeaderboard,
+  Feedback: viewFeedback,
+  Admin: viewAdmin
+};
+
+function go(name) {
+  [...N.children].forEach(b => b.classList.toggle('on', b.dataset.tab === name));
+  M.replaceChildren(TABS[name]());
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── HEADER LADDER & BANNER ───────────────────────────────────────────────────
+function initHeader() {
+  const lad = document.getElementById('lad');
+  lad.replaceChildren();
+  const colors = ['#ffd23f', '#ff5d73', '#2ec4ff', '#2ed9a0', '#ffffff'];
+  for (let i = 0; i < 12; i++) {
+    const bar = $('i', {
+      style: `height:${16 + i * 2.8}px; background:${colors[i % colors.length]};`
+    });
+    lad.appendChild(bar);
+  }
+}
+
+function updateBannerAndTimer() {
+  const bw = document.getElementById('banner-wrap');
+  if (CF.banner) {
+    bw.replaceChildren($('div', { className: 'banner-alert', textContent: '📢 ' + CF.banner }));
+  } else {
+    bw.replaceChildren();
+  }
+
+  const tw = document.getElementById('timer-wrap');
+  if (CF.timer > 0) {
+    const mins = Math.floor(CF.timer / 60);
+    const secs = CF.timer % 60;
+    tw.replaceChildren($('div', {
+      className: 'timer-pill',
+      textContent: `⏳ Exam / Practice Timer: ${mins}:${secs < 10 ? '0' : ''}${secs}`
+    }));
+  } else {
+    tw.replaceChildren();
+  }
+}
+
+// ─── SECTION 1: CAREERS ───────────────────────────────────────────────────────
+function viewCareers() {
+  const container = $('div');
+  const intro = $('div', { className: 'c' },
+    $('h2', { textContent: '🎯 English-Powered Career Horizons' }),
+    $('p', { textContent: 'Language and literature open doors far beyond traditional classrooms. Explore diverse paths that value articulate thought, narrative framing, legal reasoning, and public persuasion.' })
+  );
+
+  const grid = $('div', { className: 'grid' });
+  CAREERS.forEach(c => {
+    grid.appendChild($('div', { className: 'card' },
+      $('div', { className: 'card-head' },
+        $('div', { className: 'card-icon', textContent: c.icon }),
+        $('div', {},
+          $('h3', { textContent: c.title }),
+          $('span', { className: 'badge badge-b', textContent: c.cat })
+        )
+      ),
+      $('p', { textContent: c.desc }),
+      $('div', { className: 'card-meta' },
+        $('div', {}, $('strong', { textContent: 'Core Skills: ' }), c.skills),
+        $('div', { style: 'margin-top:4px;' }, $('strong', { textContent: 'Typical Salary: ' }), $('span', { style: 'color:var(--p);font-weight:800;' }, c.salary))
+      )
+    ));
+  });
+
+  container.append(intro, grid);
+  return container;
+}
+
+// ─── SECTION 2: COLLEGES ──────────────────────────────────────────────────────
+function viewColleges() {
+  const container = $('div');
+  const bar = $('div', { className: 'subbar' });
+  const displayArea = $('div');
+
+  const groups = {
+    "🏛️ Maharashtra Colleges": COLLEGES.Maharashtra,
+    "🇮🇳 Top Indian Universities": COLLEGES.RestOfIndia,
+    "🌍 Study Abroad (UK, US, Canada, Australia)": COLLEGES.Abroad
+  };
+
+  const renderGroup = (title, list) => {
+    const grid = $('div', { className: 'grid' });
+    list.forEach(col => {
+      grid.appendChild($('div', { className: 'card' },
+        $('h3', { textContent: col.name }),
+        $('div', { style: 'margin:4px 0;' },
+          $('span', { className: 'badge badge-y', textContent: '📍 ' + col.loc })
+        ),
+        $('p', { style: 'margin-top:8px;' },
+          $('strong', { textContent: 'Featured Courses: ' }), col.courses
+        ),
+        $('div', { className: 'card-meta' },
+          $('strong', { textContent: 'Distinction: ' }), col.notes
+        )
+      ));
+    });
+
+    displayArea.replaceChildren(
+      $('div', { className: 'c' },
+        $('h2', { textContent: title }),
+        $('p', { textContent: 'Admission pathways include CUET-UG, state-level marks, autonomous entrance tests, and international standardized profiles.' }),
+        $('div', { style: 'margin-top:16px;' }, grid)
+      )
+    );
+  };
+
+  Object.entries(groups).forEach(([lbl, list], idx) => {
+    const btn = $('button', {
+      textContent: lbl,
+      className: idx === 0 ? 'on' : '',
+      onclick: () => {
+        [...bar.children].forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        renderGroup(lbl, list);
+      }
+    });
+    bar.appendChild(btn);
+  });
+
+  renderGroup("🏛️ Maharashtra Colleges", COLLEGES.Maharashtra);
+  container.append(bar, displayArea);
+  return container;
+}
+
+// ─── SECTION 3: EXAMS ─────────────────────────────────────────────────────────
+function viewExams() {
+  const container = $('div');
+  const intro = $('div', { className: 'c' },
+    $('h2', { textContent: '📝 Competitive & Entrance Examinations' }),
+    $('p', { textContent: 'Key gateway exams that test English proficiency, verbal logic, and aptitude for degrees in India and internationally.' })
+  );
+
+  const grid = $('div', { className: 'grid' });
+  EXAMS.forEach(ex => {
+    grid.appendChild($('div', { className: 'card' },
+      $('div', { className: 'card-head' },
+        $('h3', { textContent: ex.name }),
+        $('span', { className: 'badge badge-g', textContent: ex.cat })
+      ),
+      $('p', {}, $('strong', { textContent: 'Target Courses: ' }), ex.forWho),
+      $('div', { className: 'card-meta' },
+        $('div', {}, $('strong', { textContent: 'Pattern: ' }), ex.format),
+        $('div', { style: 'margin-top:4px;' }, $('strong', { textContent: 'Schedule: ' }), $('span', { style: 'color:var(--r);font-weight:800;' }, ex.date))
+      )
+    ));
+  });
+
+  container.append(intro, grid);
+  return container;
+}
+
+// ─── SECTION 4: GAMES ─────────────────────────────────────────────────────────
+function viewGames() {
+  const container = $('div');
+  const bar = $('div', { className: 'subbar' });
+  const arena = $('div');
+
+  const games = {
+    "🃏 Flash Cards": gameFlashCards,
+    "🔍 Word Check": gameWordCheck,
+    "🟩 Word Guess": gameWordle,
+    "🐝 Spelling Bee": gameSpellingBee,
+    "🪢 Hangman": gameHangman,
+    "🧩 Crossword": gameCrossword,
+    "⚖️ Match-Up": gameMatchUp,
+    "⏱️ Timed Quiz": gameQuiz,
+    "✍️ Fill The Blank": gameFillBlank,
+    "💡 Idiom Match": gameIdioms
+  };
+
+  Object.entries(games).forEach(([title, fn], idx) => {
+    const btn = $('button', {
+      textContent: title,
+      className: idx === 0 ? 'on' : '',
+      onclick: () => {
+        [...bar.children].forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        arena.replaceChildren(fn());
+      }
+    });
+    bar.appendChild(btn);
+  });
+
+  arena.replaceChildren(gameFlashCards());
+  container.append(bar, arena);
+  return container;
+}
+
+// ─── GAME A: FLASH CARDS ──────────────────────────────────────────────────────
+function gameFlashCards() {
+  let deckType = 'career';
+  let curIdx = 0;
+  const learnedKey = 'hub_learned_words';
+  let learned = JSON.parse(localStorage.getItem(learnedKey) || '[]');
+
+  const wrap = $('div', { className: 'c', style: 'text-align:center;' });
+
+  const getDeck = () => deckType === 'career' ? CARDS_CAREER : CARDS_SAT;
+
+  const renderCard = () => {
+    const deck = getDeck();
+    if (curIdx >= deck.length) curIdx = 0;
+    if (curIdx < 0) curIdx = deck.length - 1;
+    const item = deck[curIdx];
+    const isLearned = learned.includes(item.word);
+
+    const card = $('div', { className: 'flashcard' });
+    const inner = $('div', { className: 'flashcard-inner' });
+
+    // Front
+    const front = $('div', { className: 'flashcard-front' },
+      $('span', { className: 'badge badge-p', style: 'background:var(--p);color:#fff;', textContent: item.pos.toUpperCase() }),
+      $('h2', { style: 'font-size:36px;margin:12px 0 6px;color:var(--p-dark);', textContent: item.word }),
+      $('p', { style: 'font-size:18px;color:#666;', textContent: item.phonetic }),
+      $('p', { style: 'margin-top:16px;font-size:14px;color:#888;', textContent: '👆 Tap card to reveal meaning & sentence' })
+    );
+
+    // Back
+    const back = $('div', { className: 'flashcard-back' },
+      $('div', { style: 'display:flex;justify-content:space-between;width:100%;align-items:center;' },
+        $('h3', { textContent: item.word + ' ' + item.phonetic }),
+        $('button', {
+          className: 'btn-b',
+          style: 'padding:4px 10px;font-size:13px;',
+          textContent: '🔊 Listen',
+          onclick: (e) => { e.stopPropagation(); speakText(item.word); }
+        })
+      ),
+      $('p', { style: 'margin-top:10px;font-size:15px;' }, $('strong', { textContent: 'Meaning: ' }), item.meaning),
+      $('p', { style: 'margin-top:8px;font-size:14.5px;color:#444;font-style:italic;' }, $('strong', { fontStyle: 'normal', textContent: 'Example: ' }), `"${item.sentence}"`),
+      $('p', { style: 'margin-top:8px;font-size:13px;color:#777;' }, $('strong', { textContent: 'Origin: ' }), item.origin)
+    );
+
+    card.onclick = () => card.classList.toggle('flipped');
+    inner.append(front, back);
+    card.appendChild(inner);
+
+    const ctrls = $('div', { style: 'display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap;' },
+      $('button', { textContent: '⬅️ Previous', onclick: () => { curIdx--; renderCard(); } }),
+      $('button', {
+        className: isLearned ? 'btn-g' : '',
+        textContent: isLearned ? '✅ Learned' : '⭐ Mark as Learned',
+        onclick: () => {
+          if (isLearned) learned = learned.filter(w => w !== item.word);
+          else learned.push(item.word);
+          localStorage.setItem(learnedKey, JSON.stringify(learned));
+          renderCard();
+        }
+      }),
+      $('button', { textContent: '🔊 Pronounce', onclick: () => speakText(item.word) }),
+      $('button', { textContent: 'Next ➡️', onclick: () => { curIdx++; renderCard(); } })
+    );
+
+    const progress = $('p', {
+      style: 'margin-top:12px;font-size:14px;color:#666;',
+      textContent: `Word ${curIdx + 1} of ${deck.length} · Total Learned: ${learned.length}`
+    });
+
+    cardContainer.replaceChildren(card, ctrls, progress);
+  };
+
+  const modeBar = $('div', { style: 'margin-bottom:14px;display:flex;justify-content:center;gap:10px;' },
+    $('button', {
+      className: 'on',
+      textContent: '💼 Career Vocabulary Deck',
+      onclick: (e) => {
+        deckType = 'career';
+        curIdx = 0;
+        [...modeBar.children].forEach(b => b.classList.remove('on'));
+        e.target.classList.add('on');
+        renderCard();
+      }
+    }),
+    $('button', {
+      textContent: '📖 SAT & GRE Advanced Deck',
+      onclick: (e) => {
+        deckType = 'sat';
+        curIdx = 0;
+        [...modeBar.children].forEach(b => b.classList.remove('on'));
+        e.target.classList.add('on');
+        renderCard();
+      }
+    })
+  );
+
+  const cardContainer = $('div');
+  wrap.append(
+    $('h2', { textContent: '🃏 Flash Cards & Pronunciation' }),
+    $('p', { textContent: 'Learn essential vocabulary with phonetics, audio pronunciation, definition, and contextual usage.' }),
+    modeBar,
+    cardContainer
+  );
+
+  renderCard();
+  return wrap;
+}
+
+// ─── GAME B: LIVE WORD CHECK (DICTIONARY API) ─────────────────────────────────
+function gameWordCheck() {
+  const wrap = $('div', { className: 'c' });
+  const input = $('input', { placeholder: 'Enter an English word (e.g. rhetoric, articulate, ubiquitous)...' });
+  const resultDiv = $('div', { style: 'margin-top:16px;' });
+
+  const doCheck = async () => {
+    const q = input.value.trim();
+    if (!q) return;
+    resultDiv.replaceChildren($('p', { textContent: 'Checking dictionary database...' }));
+    const data = await api(`dict/${encodeURIComponent(q)}`);
+    if (data.error || !Array.isArray(data) || !data.length) {
+      resultDiv.replaceChildren(
+        $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
+          $('h3', { style: 'color:var(--r);', textContent: '❌ Word Not Found' }),
+          $('p', { textContent: `"${q}" does not appear in the standard English lexical dictionary. Check spelling and try again.` })
+        )
+      );
+      return;
+    }
+
+    const entry = data[0];
+    const phon = entry.phonetic || (entry.phonetics && entry.phonetics.find(p => p.text)?.text) || '';
+    const meaning = entry.meanings?.[0]?.definitions?.[0]?.definition || 'No definition available.';
+    const example = entry.meanings?.[0]?.definitions?.[0]?.example || '';
+    const pos = entry.meanings?.[0]?.partOfSpeech || 'word';
+
+    resultDiv.replaceChildren(
+      $('div', { style: 'padding:18px;background:#f4f0ff;border:2px solid var(--p);border-radius:14px;' },
+        $('div', { style: 'display:flex;justify-content:space-between;align-items:center;' },
+          $('h2', { style: 'color:var(--p-dark);font-size:28px;', textContent: entry.word }),
+          $('button', {
+            className: 'btn-b',
+            textContent: '🔊 Listen',
+            onclick: () => speakText(entry.word)
+          })
+        ),
+        $('p', { style: 'color:#666;font-size:16px;margin:4px 0;' }, phon + (pos ? ` · [${pos}]` : '')),
+        $('p', { style: 'margin-top:10px;font-size:16px;' }, $('strong', { textContent: 'Meaning: ' }), meaning),
+        example ? $('p', { style: 'margin-top:8px;font-style:italic;color:#444;' }, $('strong', { fontStyle: 'normal', textContent: 'Sentence: ' }), `"${example}"`) : null,
+        $('span', { className: 'badge badge-g', style: 'margin-top:12px;', textContent: '✅ Verified Valid English Word' })
+      )
+    );
+  };
+
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') doCheck(); });
+
+  wrap.append(
+    $('h2', { textContent: '🔍 Live Dictionary & Word Verification' }),
+    $('p', { textContent: 'Verify if a word actually exists in English, listen to its pronunciation, and explore official definitions and grammatical roles.' }),
+    input,
+    $('button', { textContent: 'Check Word 🔎', onclick: doCheck }),
+    resultDiv
+  );
+  return wrap;
+}
+
+// ─── GAME C: WORD GUESS (WORDLE STYLE) ─────────────────────────────────────────
+function gameWordle() {
+  const WORD_LIST = ["WRITE", "NOVEL", "MEDIA", "POETS", "STORY", "ESSAY", "DRAFT", "PROSE", "VERSE", "PRESS", "SPEAK", "WORDS", "CLERK", "PAPER", "PRINT", "STUDY", "LEARN", "TOPIC", "QUOTE", "STYLE", "VOICE", "STAGE", "SCENE", "LEGAL", "COURT", "BRIEF", "ORDER", "RULES", "CLASS", "GRADE"];
+  let target = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
+  let attempts = 0;
+  const maxAttempts = 6;
+  let won = false;
+
+  const wrap = $('div', { className: 'c', style: 'text-align:center;' });
+  const rowsDiv = $('div', { style: 'margin:14px auto;max-width:320px;' });
+  const input = $('input', {
+    maxLength: 5,
+    placeholder: 'Enter 5 letters',
+    style: 'text-align:center;font-size:20px;letter-spacing:4px;text-transform:uppercase;max-width:240px;'
+  });
+  const msg = $('p', { style: 'font-size:18px;font-weight:700;margin:10px 0;', textContent: 'Guess the 5-letter English career/arts word. 6 tries!' });
+
+  const makeGuess = () => {
+    if (won || attempts >= maxAttempts) return;
+    const g = input.value.trim().toUpperCase();
+    if (g.length !== 5 || !/^[A-Z]{5}$/.test(g)) {
+      alert('Please enter exactly 5 English letters.');
+      return;
+    }
+    attempts++;
+
+    const left = [...target];
+    const status = Array(5).fill('no');
+
+    for (let i = 0; i < 5; i++) {
+      if (g[i] === target[i]) {
+        status[i] = 'ok';
+        left[i] = null;
+      }
+    }
+    for (let i = 0; i < 5; i++) {
+      if (status[i] === 'no') {
+        const idx = left.indexOf(g[i]);
+        if (idx !== -1) {
+          status[i] = 'mid';
+          left[idx] = null;
+        }
+      }
+    }
+
+    const row = $('div', { style: 'display:flex;justify-content:center;' });
+    for (let i = 0; i < 5; i++) {
+      row.appendChild($('span', { className: 't ' + status[i], textContent: g[i] }));
+    }
+    rowsDiv.appendChild(row);
+    input.value = '';
+
+    if (g === target) {
+      msg.textContent = `🎉 Brilliant! You cracked it in ${attempts} tries!`;
+      msg.style.color = 'var(--p-dark)';
+      won = true;
+      speakText('Congratulations! You got the word right.');
+    } else if (attempts >= maxAttempts) {
+      msg.textContent = `Game over! The secret word was: ${target}`;
+      msg.style.color = 'var(--r)';
+    }
+  };
+
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') makeGuess(); });
+
+  const restartBtn = $('button', {
+    textContent: '🔄 Play Another Word',
+    style: 'margin-left:8px;',
+    onclick: () => {
+      target = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
+      attempts = 0;
+      won = false;
+      rowsDiv.replaceChildren();
+      msg.textContent = 'Guess the 5-letter English career/arts word. 6 tries!';
+      msg.style.color = 'var(--ink)';
+      input.value = '';
+    }
+  });
+
+  wrap.append(
+    $('h2', { textContent: '🟩 Word Guess Challenge' }),
+    msg,
+    rowsDiv,
+    input,
+    $('div', { style: 'margin-top:10px;' },
+      $('button', { textContent: 'Submit Guess 🎯', onclick: makeGuess }),
+      restartBtn
+    )
+  );
+  return wrap;
+}
+
+// ─── GAME D: SPELLING BEE ─────────────────────────────────────────────────────
+function gameSpellingBee() {
+  const BEE_WORDS = [
+    { word: "Rhetoric", hint: "The art of persuasive speaking or writing" },
+    { word: "Hierarchy", hint: "A system in which members are ranked according to status" },
+    { word: "Liaison", hint: "Communication or cooperation facilitating close working" },
+    { word: "Conscientious", hint: "Wishing to do what is right; relating to conscience" },
+    { word: "Bureaucracy", hint: "A system of government administration" },
+    { word: "Mischievous", hint: "Causing or showing a fondness for causing trouble playfully" },
+    { word: "Accommodate", hint: "Provide sufficient space or fit in with wishes" },
+    { word: "Pronunciation", hint: "The manner in which a word is spoken aloud" },
+    { word: "Supersede", hint: "Take the place of a person or thing previously in authority" },
+    { word: "Lieutenant", hint: "A deputy or high-ranking military / police officer" }
+  ];
+  let cur = 0;
+  let score = 0;
+
+  const wrap = $('div', { className: 'c', style: 'text-align:center;' });
+  const playBtn = $('button', {
+    className: 'btn-b',
+    textContent: '🔊 Listen to Word',
+    onclick: () => speakText(BEE_WORDS[cur].word)
+  });
+  const input = $('input', {
+    placeholder: 'Type the spelling here...',
+    style: 'max-width:300px;text-align:center;font-size:18px;text-transform:lowercase;'
+  });
+  const hintText = $('p', { style: 'color:#666;font-style:italic;margin:8px 0;', textContent: '' });
+  const resText = $('p', { style: 'font-weight:700;font-size:16px;margin:10px 0;' });
+  const scoreBadge = $('span', { className: 'badge badge-y', textContent: `Streak: ${score}` });
+
+  const loadWord = () => {
+    input.value = '';
+    resText.textContent = '';
+    hintText.textContent = 'Hint: ' + BEE_WORDS[cur].hint;
+    setTimeout(() => speakText(BEE_WORDS[cur].word), 300);
+  };
+
+  const check = () => {
+    const userSpelling = input.value.trim().toLowerCase();
+    const correct = BEE_WORDS[cur].word.toLowerCase();
+    if (userSpelling === correct) {
+      score++;
+      resText.textContent = '✅ Correct! Well done!';
+      resText.style.color = 'var(--g)';
+    } else {
+      resText.textContent = `❌ Not quite. The correct spelling is: ${BEE_WORDS[cur].word}`;
+      resText.style.color = 'var(--r)';
+    }
+    scoreBadge.textContent = `Score: ${score} / ${BEE_WORDS.length}`;
+    cur = (cur + 1) % BEE_WORDS.length;
+    setTimeout(loadWord, 1800);
+  };
+
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+
+  wrap.append(
+    $('h2', { textContent: '🐝 Class Xth D Spelling Bee' }),
+    $('p', { textContent: 'Click Listen, hear the word pronounced, and type the precise spelling.' }),
+    scoreBadge,
+    $('div', { style: 'margin:14px 0;' }, playBtn),
+    hintText,
+    input,
+    $('div', {}, $('button', { textContent: 'Submit Spelling ✍️', onclick: check })),
+    resText
+  );
+
+  loadWord();
+  return wrap;
+}
+
+// ─── GAME E: HANGMAN ──────────────────────────────────────────────────────────
+function gameHangman() {
+  const WORDS = [
+    { w: "JOURNALIST", h: "Reports breaking news stories" },
+    { w: "ADVOCATE", h: "Argues legal cases in court" },
+    { w: "MANUSCRIPT", h: "An author's unpublished book" },
+    { w: "EDITORIAL", h: "Opinion article by newspaper chief" },
+    { w: "LINGUISTICS", h: "The scientific study of languages" },
+    { w: "RHETORIC", h: "The art of persuasive discourse" },
+    { w: "BROADCASTER", h: "Announces programs on radio or TV" },
+    { w: "PROFESSOR", h: "Higher education academic educator" }
+  ];
+  let choice = WORDS[Math.floor(Math.random() * WORDS.length)];
+  let guessed = new Set();
+  let errors = 0;
+  const maxErrors = 6;
+
+  const wrap = $('div', { className: 'c', style: 'text-align:center;' });
+  const svgDiv = $('div', { style: 'margin:12px auto;width:140px;height:140px;' });
+  const wordDisplay = $('div', { style: 'font-size:28px;letter-spacing:8px;font-family:Fredoka;margin:14px 0;' });
+  const hintDisplay = $('p', { style: 'color:#666;font-size:15px;', textContent: 'Category: ' + choice.h });
+  const lettersDiv = $('div', { style: 'display:flex;flex-wrap:wrap;gap:6px;max-width:440px;margin:12px auto;justify-content:center;' });
+  const statusMsg = $('p', { style: 'font-weight:700;font-size:18px;' });
+
+  const drawSVG = () => {
+    // Hangman drawing steps
+    const parts = [
+      `<line x1="20" y1="130" x2="120" y2="130" stroke="#1b1b3a" stroke-width="4"/>`,
+      `<line x1="40" y1="130" x2="40" y2="20" stroke="#1b1b3a" stroke-width="4"/><line x1="40" y1="20" x2="90" y2="20" stroke="#1b1b3a" stroke-width="4"/><line x1="90" y1="20" x2="90" y2="35" stroke="#1b1b3a" stroke-width="3"/>`,
+      errors >= 1 ? `<circle cx="90" cy="45" r="10" stroke="#1b1b3a" stroke-width="3" fill="#ffd23f"/>` : '',
+      errors >= 2 ? `<line x1="90" y1="55" x2="90" y2="90" stroke="#1b1b3a" stroke-width="3"/>` : '',
+      errors >= 3 ? `<line x1="90" y1="65" x2="70" y2="80" stroke="#1b1b3a" stroke-width="3"/>` : '',
+      errors >= 4 ? `<line x1="90" y1="65" x2="110" y2="80" stroke="#1b1b3a" stroke-width="3"/>` : '',
+      errors >= 5 ? `<line x1="90" y1="90" x2="75" y2="115" stroke="#1b1b3a" stroke-width="3"/>` : '',
+      errors >= 6 ? `<line x1="90" y1="90" x2="105" y2="115" stroke="#1b1b3a" stroke-width="3"/>` : ''
+    ];
+    svgDiv.innerHTML = `<svg width="140" height="140" viewBox="0 0 140 140">${parts.join('')}</svg>`;
+  };
+
+  const updateWord = () => {
+    const revealed = [...choice.w].map(ch => guessed.has(ch) ? ch : '_').join(' ');
+    wordDisplay.textContent = revealed;
+    if (!revealed.includes('_')) {
+      statusMsg.textContent = '🎉 Victory! You solved the career word!';
+      statusMsg.style.color = 'var(--g)';
+      disableButtons();
+    } else if (errors >= maxErrors) {
+      statusMsg.textContent = `💀 Game Over! The word was: ${choice.w}`;
+      statusMsg.style.color = 'var(--r)';
+      disableButtons();
+    }
+  };
+
+  const disableButtons = () => {
+    lettersDiv.querySelectorAll('button').forEach(b => b.disabled = true);
+  };
+
+  const guessLetter = (letter, btn) => {
+    btn.disabled = true;
+    guessed.add(letter);
+    if (!choice.w.includes(letter)) {
+      errors++;
+      btn.style.background = '#ccc';
+    } else {
+      btn.style.background = 'var(--g)';
+    }
+    drawSVG();
+    updateWord();
+  };
+
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(ch => {
+    const btn = $('button', {
+      textContent: ch,
+      style: 'width:36px;height:36px;padding:0;font-size:15px;',
+      onclick: () => guessLetter(ch, btn)
+    });
+    lettersDiv.appendChild(btn);
+  });
+
+  drawSVG();
+  updateWord();
+
+  wrap.append(
+    $('h2', { textContent: '🪢 Career Hangman' }),
+    hintDisplay,
+    svgDiv,
+    wordDisplay,
+    statusMsg,
+    lettersDiv,
+    $('div', { style: 'margin-top:14px;' },
+      $('button', {
+        textContent: '🔄 New Game',
+        onclick: () => {
+          choice = WORDS[Math.floor(Math.random() * WORDS.length)];
+          guessed.clear();
+          errors = 0;
+          statusMsg.textContent = '';
+          hintDisplay.textContent = 'Category: ' + choice.h;
+          lettersDiv.querySelectorAll('button').forEach(b => {
+            b.disabled = false;
+            b.style.background = 'var(--y)';
+          });
+          drawSVG();
+          updateWord();
+        }
+      })
+    )
+  );
+  return wrap;
+}
+
+// ─── GAME F: CROSSWORD ────────────────────────────────────────────────────────
+function gameCrossword() {
+  const wrap = $('div', { className: 'c' });
+  // 8x8 fixed grid
+  const layout = [
+    ['E','D','I','T','O','R','.','.'],
+    ['.','.','.','E','.','.','.','.'],
+    ['.','.','P','R','O','S','E','.'],
+    ['.','.','.','M','.','.','.','.'],
+    ['.','C','U','E','T','.','.','.'],
+    ['.','L','.','.','.','.','.','.'],
+    ['.','A','.','.','.','.','.','.'],
+    ['.','T','.','.','.','.','.','.']
+  ];
+  const numbers = {
+    "0,0": "1", // 1 Across: EDITOR
+    "0,3": "2", // 2 Down: TERM
+    "2,2": "3", // 3 Across: PROSE
+    "4,1": "4", // 4 Across: CUET & 4 Down: CLAT
+  };
+
+  const gridDiv = $('div', { className: 'cw-grid' });
+  const inputs = [];
+
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const char = layout[r][c];
+      const isBlack = char === '.';
+      const cell = $('div', { className: 'cw-cell' + (isBlack ? ' black' : '') });
+      const coord = `${r},${c}`;
+      if (numbers[coord]) {
+        cell.appendChild($('span', { className: 'cw-num', textContent: numbers[coord] }));
+      }
+      if (!isBlack) {
+        const inp = $('input', { maxLength: 1 });
+        inp.dataset.r = r;
+        inp.dataset.c = c;
+        inp.dataset.char = char;
+        cell.appendChild(inp);
+        inputs.push(inp);
+      }
+      gridDiv.appendChild(cell);
+    }
+  }
+
+  const cluesDiv = $('div', { style: 'display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;' },
+    $('div', {},
+      $('h3', { textContent: 'Across ➡️' }),
+      $('p', { style: 'font-size:14px;margin:4px 0;' }, '1. Person who refines and corrects manuscripts (6)'),
+      $('p', { style: 'font-size:14px;margin:4px 0;' }, '3. Ordinary written language, not verse (5)'),
+      $('p', { style: 'font-size:14px;margin:4px 0;' }, '4. Central university entrance test for BA degrees (4)')
+    ),
+    $('div', {},
+      $('h3', { textContent: 'Down ⬇️' }),
+      $('p', { style: 'font-size:14px;margin:4px 0;' }, '2. Fixed period or school semester (4)'),
+      $('p', { style: 'font-size:14px;margin:4px 0;' }, '4. National law university admission test (4)')
+    )
+  );
+
+  const checkBtn = $('button', {
+    textContent: 'Check Answers 🔎',
+    onclick: () => {
+      let correct = 0;
+      inputs.forEach(inp => {
+        if (inp.value.toUpperCase() === inp.dataset.char) {
+          inp.style.background = '#c3fada';
+          correct++;
+        } else {
+          inp.style.background = '#ffd2d9';
+        }
+      });
+      if (correct === inputs.length) {
+        alert('🎉 Incredible! You completed the crossword puzzle correctly!');
+      }
+    }
+  });
+
+  const revealBtn = $('button', {
+    className: 'btn-b',
+    textContent: 'Reveal Solution 💡',
+    onclick: () => {
+      inputs.forEach(inp => {
+        inp.value = inp.dataset.char;
+        inp.style.background = '#e6deff';
+      });
+    }
+  });
+
+  wrap.append(
+    $('h2', { textContent: '🧩 Mini English & Careers Crossword' }),
+    $('p', { textContent: 'Fill in the grid using the clues below.' }),
+    gridDiv,
+    $('div', { style: 'display:flex;justify-content:center;gap:10px;margin-top:12px;' }, checkBtn, revealBtn),
+    cluesDiv
+  );
+  return wrap;
+}
+
+// ─── GAME G: CAREER MATCH-UP ──────────────────────────────────────────────────
+function gameMatchUp() {
+  const PAIRS = [
+    ["Lawyer & Advocate", "CLAT Entrance Exam"],
+    ["Investigative Journalist", "IIMC PG Diploma"],
+    ["High School English Teacher", "CTET / State TET"],
+    ["Study Abroad Aspirant", "IELTS / TOEFL"],
+    ["Civil Servant (IAS/IFS)", "UPSC Examination"],
+    ["BA Literature at Central Univ", "CUET-UG Exam"]
+  ];
+  let selectedA = null;
+  let matches = 0;
+
+  const wrap = $('div', { className: 'c' });
+  const status = $('p', { style: 'font-weight:700;font-size:18px;margin-bottom:12px;', textContent: 'Click a Career on the left, then click its matching Exam on the right!' });
+  const colA = $('div', { style: 'display:flex;flex-direction:column;gap:8px;' });
+  const colB = $('div', { style: 'display:flex;flex-direction:column;gap:8px;' });
+
+  const shuffledB = [...PAIRS].map((p, idx) => ({ text: p[1], idx })).sort(() => Math.random() - 0.5);
+
+  PAIRS.forEach((p, idx) => {
+    const btn = $('button', {
+      textContent: p[0],
+      style: 'text-align:left;width:100%;',
+      onclick: () => {
+        if (btn.disabled) return;
+        colA.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        selectedA = idx;
+      }
+    });
+    colA.appendChild(btn);
+  });
+
+  shuffledB.forEach(item => {
+    const btn = $('button', {
+      textContent: item.text,
+      style: 'text-align:left;width:100%;',
+      onclick: () => {
+        if (btn.disabled || selectedA === null) return;
+        if (selectedA === item.idx) {
+          btn.className = 'btn-g';
+          btn.disabled = true;
+          const aBtn = colA.children[selectedA];
+          aBtn.className = 'btn-g';
+          aBtn.disabled = true;
+          matches++;
+          selectedA = null;
+          if (matches === PAIRS.length) {
+            status.textContent = '🎉 Masterful! You matched every career with its exact exam!';
+            status.style.color = 'var(--g)';
+          }
+        } else {
+          btn.classList.add('bad');
+          setTimeout(() => btn.classList.remove('bad'), 500);
+        }
+      }
+    });
+    colB.appendChild(btn);
+  });
+
+  const grid = $('div', { style: 'display:grid;grid-template-columns:1fr 1fr;gap:16px;' }, colA, colB);
+  wrap.append(
+    $('h2', { textContent: '⚖️ Career & Exam Match-Up' }),
+    status,
+    grid
+  );
+  return wrap;
+}
+
+// ─── GAME H: TIMED QUIZ ───────────────────────────────────────────────────────
+function gameQuiz() {
+  const QUESTIONS = [
+    { q: "Which national entrance exam is taken for admission to National Law Universities (NLUs)?", opts: ["CLAT", "CUET", "NEET", "GATE"], ans: 0 },
+    { q: "What does the IELTS exam primarily assess?", opts: ["Mathematical Aptitude", "English Language Proficiency", "Legal Knowledge", "General Science"], ans: 1 },
+    { q: "Which autonomous Mumbai college hosts the famous literary festival 'Malhar'?", opts: ["Ruia College", "St. Xavier's College", "K.C. College", "Wilson College"], ans: 1 },
+    { q: "Which institution in Hyderabad is specifically dedicated to English and Foreign Languages?", opts: ["JNU", "EFLU", "IIMC", "TISS"], ans: 1 },
+    { q: "A professional who compiles, edits, and writes dictionaries is called a:", opts: ["Lexicographer", "Stenographer", "Calligrapher", "Cartographer"], ans: 0 }
+  ];
+  let cur = 0;
+  let score = 0;
+  let timerId = null;
+  let timeLeft = 10;
+
+  const wrap = $('div', { className: 'c' });
+  const arena = $('div');
+
+  const showQuestion = () => {
+    clearInterval(timerId);
+    if (cur >= QUESTIONS.length) {
+      arena.replaceChildren(
+        $('div', { style: 'text-align:center;padding:20px;' },
+          $('h2', { textContent: `Quiz Completed! 🏆` }),
+          $('p', { style: 'font-size:22px;margin:12px 0;', textContent: `You scored ${score} out of ${QUESTIONS.length}!` }),
+          $('button', { textContent: 'Play Again 🔄', onclick: () => { cur = 0; score = 0; showQuestion(); } })
+        )
+      );
+      return;
+    }
+
+    const qItem = QUESTIONS[cur];
+    timeLeft = 10;
+    const timerText = $('span', { className: 'badge badge-r', textContent: `⏱️ 10s left` });
+
+    timerId = setInterval(() => {
+      timeLeft--;
+      timerText.textContent = `⏱️ ${timeLeft}s left`;
+      if (timeLeft <= 0) {
+        clearInterval(timerId);
+        cur++;
+        showQuestion();
+      }
+    }, 1000);
+
+    const optsDiv = $('div', { style: 'margin-top:14px;display:flex;flex-direction:column;gap:8px;' });
+    qItem.opts.forEach((opt, idx) => {
+      optsDiv.appendChild($('button', {
+        textContent: opt,
+        style: 'text-align:left;',
+        onclick: () => {
+          clearInterval(timerId);
+          if (idx === qItem.ans) score++;
+          cur++;
+          showQuestion();
+        }
+      }));
+    });
+
+    arena.replaceChildren(
+      $('div', { style: 'display:flex;justify-content:space-between;align-items:center;' },
+        $('span', { className: 'badge badge-b', textContent: `Question ${cur + 1} of ${QUESTIONS.length}` }),
+        timerText
+      ),
+      $('h3', { style: 'margin:14px 0;font-size:20px;', textContent: qItem.q }),
+      optsDiv
+    );
+  };
+
+  wrap.append(
+    $('h2', { textContent: '⏱️ Fast-Paced Careers & Literature Quiz' }),
+    arena
+  );
+  showQuestion();
+  return wrap;
+}
+
+// ─── GAME I: FILL IN THE BLANK ────────────────────────────────────────────────
+function gameFillBlank() {
+  const BLANKS = [
+    { s: "The editor found the manuscript so ______ that she couldn't put it down.", opts: ["compelling", "tedious", "monotonous"], ans: 0, exp: "Compelling means evoking interest or attention in a powerfully irresistible way." },
+    { s: "Effective legal advocacy requires ______ and precise terminology.", opts: ["ambiguity", "clarity", "verbosity"], ans: 1, exp: "Clarity ensures that legal arguments are understood without misunderstanding." },
+    { s: "The journalist insisted on verifying the story with ______ sources before publication.", opts: ["secondary", "unreliable", "credible"], ans: 2, exp: "Credible means capable of being believed or trusted." }
+  ];
+  let cur = 0;
+
+  const wrap = $('div', { className: 'c' });
+  const arena = $('div');
+
+  const render = () => {
+    if (cur >= BLANKS.length) {
+      arena.replaceChildren(
+        $('div', { style: 'text-align:center;padding:20px;' },
+          $('h2', { textContent: 'Well Done! All sentences completed!' }),
+          $('button', { textContent: 'Restart 🔄', onclick: () => { cur = 0; render(); } })
+        )
+      );
+      return;
+    }
+    const item = BLANKS[cur];
+    const optsDiv = $('div', { style: 'display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;' });
+
+    item.opts.forEach((opt, idx) => {
+      optsDiv.appendChild($('button', {
+        textContent: opt,
+        onclick: (e) => {
+          if (idx === item.ans) {
+            e.target.className = 'btn-g';
+            feedback.textContent = '✅ ' + item.exp;
+            feedback.style.color = 'var(--g)';
+            setTimeout(() => { cur++; render(); }, 1800);
+          } else {
+            e.target.className = 'btn-r';
+            feedback.textContent = '❌ Try again!';
+            feedback.style.color = 'var(--r)';
+          }
+        }
+      }));
+    });
+
+    const feedback = $('p', { style: 'margin-top:12px;font-weight:700;' });
+
+    arena.replaceChildren(
+      $('h3', { style: 'font-size:22px;line-height:1.4;', textContent: item.s }),
+      optsDiv,
+      feedback
+    );
+  };
+
+  wrap.append(
+    $('h2', { textContent: '✍️ Fill-in-the-Blank Vocabulary Challenge' }),
+    $('p', { textContent: 'Choose the word that most accurately completes the academic or professional sentence.' }),
+    arena
+  );
+  render();
+  return wrap;
+}
+
+// ─── GAME J: IDIOM MATCH ──────────────────────────────────────────────────────
+function gameIdioms() {
+  const IDIOMS = [
+    { i: "Read between the lines", m: "Look for meaning that is implied rather than stated explicitly" },
+    { i: "Bite the bullet", m: "Face a difficult situation with courage and stoicism" },
+    { i: "Devil's advocate", m: "Arguing against an idea for the sake of exploring all angles" },
+    { i: "Burn the midnight oil", m: "Work or study late into the night" },
+    { i: "On the tip of my tongue", m: "Almost remembered, but not quite coming to mind" }
+  ];
+  const wrap = $('div', { className: 'c' });
+  const arena = $('div', { style: 'margin-top:14px;' });
+
+  IDIOMS.forEach(item => {
+    arena.appendChild($('div', {
+      style: 'background:#f4f0ff;border:2px solid var(--p);border-radius:12px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;'
+    },
+      $('strong', { style: 'color:var(--p-dark);font-size:17px;', textContent: `"${item.i}"` }),
+      $('span', { style: 'font-size:14.5px;color:#333;', textContent: '→ ' + item.m })
+    ));
+  });
+
+  wrap.append(
+    $('h2', { textContent: '💡 English Idioms in Professional & Literary Use' }),
+    $('p', { textContent: 'Idioms elevate creative storytelling, speechwriting, and nuanced debate.' }),
+    arena
+  );
+  return wrap;
+}
+
+// ─── SECTION 5: SPEAK (ELEVENLABS STT & EVALUATION) ───────────────────────────
+function viewSpeak() {
+  const wrap = $('div', { className: 'c' });
+  let curPack = 'Everyday';
+  let curLevel = 1;
+  let targetSentence = '';
+  let mediaRecorder = null;
+  let audioChunks = [];
+
+  const nameInput = $('input', {
+    placeholder: 'Enter your first name (e.g. Aarav, Ananya)',
+    value: STUDENT_NAME,
+    maxLength: 30
+  });
+
+  nameInput.addEventListener('change', () => {
+    STUDENT_NAME = nameInput.value.trim();
+    localStorage.setItem('hub_student_name', STUDENT_NAME);
+  });
+
+  const packSelect = $('select', { style: 'max-width:280px;' });
+  ['Everyday', 'Journalism', 'Law', 'Academic'].forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = `Pack: ${p} English`;
+    packSelect.appendChild(opt);
+  });
+  packSelect.onchange = () => {
+    curPack = packSelect.value;
+    loadSentence();
+  };
+
+  const sentenceCard = $('div', {
+    style: 'background:linear-gradient(135deg, #fff 0%, #f4efff 100%);border:var(--border);border-radius:18px;padding:24px;margin:16px 0;text-align:center;'
+  });
+  const sentenceDisplay = $('p', {
+    style: 'font-size:22px;font-weight:700;color:var(--ink);margin:12px 0;line-height:1.4;',
+    textContent: 'Click Load Sentence below to begin...'
+  });
+  const resultDisplay = $('div', { style: 'margin-top:14px;' });
+
+  const listenBtn = $('button', {
+    className: 'btn-b',
+    textContent: '🔊 Listen First',
+    onclick: () => speakText(targetSentence)
+  });
+
+  const recordBtn = $('button', {
+    className: 'btn-r',
+    textContent: '🎙️ Hold & Record Speech'
+  });
+
+  const loadSentence = async () => {
+    resultDisplay.replaceChildren();
+    sentenceDisplay.textContent = 'Fetching fresh sentence from cloud...';
+    const data = await api(`random-sentence?pack=${encodeURIComponent(curPack)}`);
+    targetSentence = data.sentence || "Language is the dress of thought.";
+    sentenceDisplay.textContent = `"${targetSentence}"`;
+  };
+
+  // Recording logic
+  recordBtn.onclick = async () => {
+    const name = nameInput.value.trim();
+    if (!name) {
+      alert('Please enter your first name before recording.');
+      return;
+    }
+    STUDENT_NAME = name;
+    localStorage.setItem('hub_student_name', name);
+
+    if (mediaRecorder && mediaRecorder.state === 'recording') {
+      mediaRecorder.stop();
+      recordBtn.textContent = '⏳ Evaluating Audio...';
+      recordBtn.disabled = true;
+      return;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioChunks = [];
+      mediaRecorder = new MediaRecorder(stream);
+      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+
+      mediaRecorder.onstop = async () => {
+        stream.getTracks().forEach(t => t.stop());
+        const audioBlob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+
+        const form = new FormData();
+        form.append('name', STUDENT_NAME);
+        form.append('pack', curPack);
+        form.append('level', curLevel);
+        form.append('target', targetSentence);
+        form.append('audio', audioBlob, 'speech.webm');
+
+        const evalRes = await api('attempt', { method: 'POST', body: form });
+        recordBtn.textContent = '🎙️ Record Another Attempt';
+        recordBtn.disabled = false;
+
+        if (evalRes.error) {
+          resultDisplay.replaceChildren(
+            $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
+              $('strong', { style: 'color:var(--r);', textContent: 'Evaluation Notice: ' }),
+              evalRes.error
+            )
+          );
+          return;
+        }
+
+        const isPass = evalRes.passed;
+        resultDisplay.replaceChildren(
+          $('div', {
+            style: `padding:16px;border-radius:14px;border:3px solid ${isPass ? 'var(--g)' : 'var(--y)'};background:#fff;`
+          },
+            $('h3', { style: `color:${isPass ? '#0a9968' : 'var(--ink)'};font-size:22px;`, textContent: isPass ? '🎉 Level Passed!' : 'Keep Practicing!' }),
+            $('p', { style: 'margin:8px 0;font-size:15px;' }, $('strong', { textContent: 'What we heard: ' }), `"${evalRes.transcript || '(silent)'}"`),
+            $('p', { style: 'font-size:18px;font-weight:800;color:var(--p-dark);' }, `Speaking Accuracy: ${evalRes.acc}% (Required: ${evalRes.passThreshold}%)`),
+            isPass ? $('button', {
+              className: 'btn-g',
+              style: 'margin-top:10px;',
+              textContent: 'Next Challenge ➡️',
+              onclick: () => {
+                curLevel++;
+                levelBadge.textContent = `Level ${curLevel}`;
+                loadSentence();
+              }
+            }) : $('button', {
+              style: 'margin-top:10px;',
+              textContent: 'Try Same Sentence Again 🔁',
+              onclick: () => resultDisplay.replaceChildren()
+            })
+          )
+        );
+      };
+
+      mediaRecorder.start();
+      recordBtn.textContent = '⏹️ Click to Stop & Check';
+    } catch (err) {
+      alert('Microphone access was denied or is not supported. Please allow microphone permissions.');
+    }
+  };
+
+  const levelBadge = $('span', { className: 'badge badge-p', style: 'background:var(--p);color:#fff;', textContent: `Level ${curLevel}` });
+
+  sentenceCard.append(
+    levelBadge,
+    sentenceDisplay,
+    $('div', { style: 'display:flex;justify-content:center;gap:10px;margin-top:14px;flex-wrap:wrap;' },
+      listenBtn,
+      recordBtn,
+      $('button', { textContent: '🎲 Change Sentence', onclick: loadSentence })
+    ),
+    resultDisplay
+  );
+
+  wrap.append(
+    $('h2', { textContent: '🎤 Speech Recognition & Pronunciation Ladder' }),
+    $('p', { textContent: 'Powered by ElevenLabs Speech-to-Text API. Speak into your microphone and receive instantaneous accuracy scoring and leaderboard qualification.' }),
+    $('div', { style: 'display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;' },
+      $('div', { style: 'flex:1;min-width:240px;' }, $('label', { textContent: 'Student First Name: ' }), nameInput),
+      $('div', { style: 'flex:1;min-width:240px;' }, $('label', { textContent: 'Speaking Theme Pack: ' }), packSelect)
+    ),
+    sentenceCard
+  );
+
+  loadSentence();
+  return wrap;
+}
+
+// ─── SECTION 6: LEADERBOARD ───────────────────────────────────────────────────
+function viewLeaderboard() {
+  const wrap = $('div', { className: 'c' });
+  const filterBar = $('div', { className: 'subbar' });
+  const tableContainer = $('div');
+
+  const fetchAndRender = async (packFilter = '') => {
+    tableContainer.replaceChildren($('p', { textContent: 'Refreshing leaderboard records...' }));
+    const scores = await api(`scores${packFilter ? `?pack=${encodeURIComponent(packFilter)}` : ''}`);
+    if (!Array.isArray(scores) || !scores.length) {
+      tableContainer.replaceChildren($('p', { style: 'padding:20px;text-align:center;color:#666;', textContent: 'No speaking scores recorded yet. Be the first to speak and claim the top rank!' }));
+      return;
+    }
+
+    const table = $('table');
+    table.appendChild($('tr', {},
+      $('th', { textContent: 'Rank' }),
+      $('th', { textContent: 'Student Name' }),
+      $('th', { textContent: 'Pack' }),
+      $('th', { textContent: 'Level Reached' }),
+      $('th', { textContent: 'Accuracy' }),
+      $('th', { textContent: 'Date' })
+    ));
+
+    const medals = ['🥇', '🥈', '🥉'];
+    scores.forEach((s, idx) => {
+      const d = new Date(s.ts).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+      table.appendChild($('tr', {},
+        $('td', { style: 'font-weight:800;font-size:17px;' }, medals[idx] || (idx + 1)),
+        $('td', { style: 'font-weight:700;' }, s.name),
+        $('td', {}, $('span', { className: 'badge badge-b', textContent: s.pack || 'Everyday' })),
+        $('td', { style: 'font-weight:700;' }, `Level ${s.level}`),
+        $('td', { style: 'color:var(--p);font-weight:800;' }, `${s.acc}%`),
+        $('td', { style: 'color:#777;font-size:13px;' }, d)
+      ));
+    });
+
+    tableContainer.replaceChildren(table);
+  };
+
+  const packs = ['All', 'Everyday', 'Journalism', 'Law', 'Academic'];
+  packs.forEach((p, idx) => {
+    const btn = $('button', {
+      textContent: p === 'All' ? '🌟 All Packs' : p,
+      className: idx === 0 ? 'on' : '',
+      onclick: () => {
+        [...filterBar.children].forEach(b => b.classList.remove('on'));
+        btn.classList.add('on');
+        fetchAndRender(p === 'All' ? '' : p);
+      }
+    });
+    filterBar.appendChild(btn);
+  });
+
+  wrap.append(
+    $('h2', { textContent: '🏆 Class Speaking Ladder Leaderboard' }),
+    $('p', { textContent: 'Top performers in Class Xth D evaluated across fluency, accuracy, and difficulty levels.' }),
+    filterBar,
+    tableContainer
+  );
+
+  fetchAndRender();
+  return wrap;
+}
+
+// ─── SECTION 7: FEEDBACK ──────────────────────────────────────────────────────
+function viewFeedback() {
+  const wrap = $('div', { className: 'c', style: 'max-width:680px;margin:auto;' });
+  const form = $('form');
+
+  const nameInp = $('input', { placeholder: 'Your First Name (Optional)' });
+  const roleSelect = $('select');
+  ['Student', 'Parent', 'Teacher / Evaluator'].forEach(r => {
+    const opt = document.createElement('option');
+    opt.value = r;
+    opt.textContent = r;
+    roleSelect.appendChild(opt);
+  });
+  const classInp = $('input', { placeholder: 'Class / Section (e.g. X-D, or child’s grade)' });
+
+  const makeStarGroup = (label) => {
+    const div = $('div', { style: 'margin:10px 0;' }, $('label', { style: 'display:block;font-weight:700;', textContent: label }));
+    const select = $('select');
+    [
+      { v: 5, t: '⭐⭐⭐⭐⭐ (5/5 Excellent)' },
+      { v: 4, t: '⭐⭐⭐⭐ (4/5 Very Good)' },
+      { v: 3, t: '⭐⭐⭐ (3/5 Good)' },
+      { v: 2, t: '⭐⭐ (2/5 Fair)' },
+      { v: 1, t: '⭐ (1/5 Needs Improvement)' }
+    ].forEach(o => {
+      const opt = document.createElement('option');
+      opt.value = o.v;
+      opt.textContent = o.t;
+      select.appendChild(opt);
+    });
+    div.appendChild(select);
+    return { div, getVal: () => parseInt(select.value) };
+  };
+
+  const usefulStars = makeStarGroup('1. Overall Website & Career Information Quality');
+  const gamesStars = makeStarGroup('2. English Games & Word Learning Experience');
+  const speakStars = makeStarGroup('3. Voice-Assessment & Speaking Ladder Feature');
+
+  const commentArea = $('textarea', {
+    placeholder: 'Share your suggestions or compliments for our project (No personal phone numbers or email addresses requested)...',
+    style: 'font-family:inherit;'
+  });
+
+  const submitBtn = $('button', {
+    type: 'submit',
+    className: 'btn-g',
+    style: 'width:100%;font-size:17px;margin-top:12px;',
+    textContent: 'Submit Feedback 🚀'
+  });
+
+  const statusMsg = $('p', { style: 'margin-top:12px;font-weight:700;' });
+
+  form.onsubmit = async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    const payload = {
+      name: nameInp.value.trim() || 'Anonymous',
+      role: roleSelect.value,
+      class_info: classInp.value.trim(),
+      r_useful: usefulStars.getVal(),
+      r_games: gamesStars.getVal(),
+      r_speaking: speakStars.getVal(),
+      comment: commentArea.value.trim()
+    };
+
+    const res = await api('feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Feedback 🚀';
+
+    if (res.ok) {
+      statusMsg.textContent = '🎉 Thank you! Your feedback has been recorded safely in our project database.';
+      statusMsg.style.color = 'var(--g)';
+      form.reset();
+    } else {
+      statusMsg.textContent = '❌ Failed to submit feedback: ' + (res.error || 'Server error');
+      statusMsg.style.color = 'var(--r)';
+    }
+  };
+
+  form.append(
+    $('label', { textContent: 'Name (Optional): ' }), nameInp,
+    $('label', { textContent: 'Role: ' }), roleSelect,
+    $('label', { textContent: 'Academic Detail: ' }), classInp,
+    usefulStars.div,
+    gamesStars.div,
+    speakStars.div,
+    $('label', { textContent: 'Feedback & Comments: ' }), commentArea,
+    submitBtn,
+    statusMsg
+  );
+
+  wrap.append(
+    $('h2', { textContent: '💬 Exhibition Feedback Portal' }),
+    $('p', { textContent: 'We value your input! Parents, students, and teachers are welcome to rate this website. No confidential contact details are collected.' }),
+    form
+  );
+  return wrap;
+}
+
+// ─── SECTION 8: ADMIN PORTAL (PASSWORD: careers2026) ──────────────────────────
+function viewAdmin() {
+  const wrap = $('div', { className: 'c' });
+
+  if (!ADMIN_KEY) {
+    const pwdInput = $('input', { type: 'password', placeholder: 'Enter admin password (careers2026)' });
+    const loginMsg = $('p', { style: 'color:var(--r);font-weight:700;margin-top:8px;' });
+
+    const handleLogin = async () => {
+      const p = pwdInput.value.trim();
+      const testRes = await fetch('/api/admin/ping', {
+        headers: { 'Authorization': 'Bearer ' + p }
+      });
+      if (testRes.ok) {
+        ADMIN_KEY = p;
+        localStorage.setItem('hub_admin_key', p);
+        go('Admin');
+      } else {
+        loginMsg.textContent = 'Incorrect admin password. Please try again.';
+      }
+    };
+
+    pwdInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleLogin(); });
+
+    wrap.append(
+      $('h2', { textContent: '🔐 Admin Portal Authentication' }),
+      $('p', { textContent: 'Authorized teacher & exhibition administrator controls.' }),
+      pwdInput,
+      $('button', { textContent: 'Log In 🔑', onclick: handleLogin }),
+      loginMsg
+    );
+    return wrap;
+  }
+
+  // Admin Dashboard
+  const logoutBtn = $('button', {
+    className: 'btn-r',
+    style: 'float:right;padding:6px 12px;font-size:13px;',
+    textContent: 'Log Out 🚪',
+    onclick: () => {
+      ADMIN_KEY = '';
+      localStorage.removeItem('hub_admin_key');
+      go('Admin');
+    }
+  });
+
+  const bannerInp = $('input', { placeholder: 'Broadcast announcement message for site header', value: CF.banner || '' });
+  const timerInp = $('input', { type: 'number', placeholder: 'Session Timer in seconds (0 to turn off)', value: CF.timer || 0 });
+  const passInp = $('input', { type: 'number', placeholder: 'Pass mark percentage (e.g. 70)', value: CF.pass || 70 });
+
+  const saveConfigBtn = $('button', {
+    className: 'btn-g',
+    textContent: 'Save Site Settings 💾',
+    onclick: async () => {
+      const payload = {
+        banner: bannerInp.value.trim(),
+        timer: parseInt(timerInp.value) || 0,
+        pass: parseInt(passInp.value) || 70
+      };
+      const res = await api('admin/config', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        CF.banner = payload.banner;
+        CF.timer = payload.timer;
+        CF.pass = payload.pass;
+        updateBannerAndTimer();
+        alert('Settings saved successfully!');
+      } else {
+        alert('Failed to save settings: ' + (res.error || 'Server error'));
+      }
+    }
+  });
+
+  // Level Packs Editor
+  const packSelect = $('select');
+  ['Everyday', 'Journalism', 'Law', 'Academic'].forEach(p => {
+    const o = document.createElement('option');
+    o.value = p;
+    o.textContent = `Pack: ${p}`;
+    packSelect.appendChild(o);
+  });
+
+  const sentencesArea = $('textarea', { style: 'min-height:160px;' });
+
+  const loadPackIntoEditor = () => {
+    const p = packSelect.value;
+    const list = CF.packs[p] || [];
+    sentencesArea.value = list.join('\n');
+  };
+  packSelect.onchange = loadPackIntoEditor;
+
+  const savePackBtn = $('button', {
+    textContent: 'Save Sentences for Selected Pack 📝',
+    onclick: async () => {
+      const p = packSelect.value;
+      const lines = sentencesArea.value.split('\n').map(s => s.trim()).filter(Boolean);
+      const res = await api('admin/config', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ [`pack_${p}`]: lines })
+      });
+      if (res.ok) {
+        CF.packs[p] = lines;
+        alert(`Saved ${lines.length} sentences for Pack: ${p}`);
+      } else {
+        alert('Error saving pack sentences');
+      }
+    }
+  });
+
+  // Scores Management
+  const scoresArea = $('div', { style: 'margin-top:16px;' });
+  const loadAdminScores = async () => {
+    const list = await api('scores');
+    if (!Array.isArray(list)) return;
+    scoresArea.replaceChildren(
+      $('div', { style: 'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;' },
+        $('h3', { textContent: `Active Speaking Attempts (${list.length})` }),
+        $('div', {},
+          $('a', { className: 'btn btn-b', href: '/api/admin/export', target: '_blank', textContent: 'Export CSV 📥' }),
+          $('button', {
+            className: 'btn-r',
+            style: 'margin-left:8px;',
+            textContent: 'Clear All Scores ⚠️',
+            onclick: async () => {
+              if (confirm('Delete all speaking scores from the leaderboard?')) {
+                await api('admin/reset', { method: 'POST' });
+                loadAdminScores();
+              }
+            }
+          })
+        )
+      ),
+      ...list.slice(0, 15).map(s => $('div', {
+        style: 'display:flex;justify-content:space-between;padding:8px 12px;background:#faf8ff;border:1px solid #ddd;border-radius:8px;margin-bottom:6px;'
+      },
+        $('span', {}, `${s.name} (Pack: ${s.pack}, Lv ${s.level}, Acc: ${s.acc}%)`),
+        $('button', {
+          style: 'padding:2px 8px;font-size:12px;background:var(--r);color:#fff;',
+          textContent: 'Delete',
+          onclick: async () => {
+            await api('admin/del', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: s.id }) });
+            loadAdminScores();
+          }
+        })
+      ))
+    );
+  };
+
+  // Feedback Management
+  const feedbackArea = $('div', { style: 'margin-top:20px;' });
+  const loadAdminFeedback = async () => {
+    const data = await api('feedback');
+    const items = data.results || [];
+    feedbackArea.replaceChildren(
+      $('div', { style: 'display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;' },
+        $('h3', { textContent: `Exhibition Feedback Submissions (${data.total || items.length})` }),
+        $('a', { className: 'btn btn-b', href: '/api/admin/export-feedback', target: '_blank', textContent: 'Export Feedback CSV 📥' })
+      ),
+      ...items.slice(0, 10).map(fb => $('div', {
+        style: 'background:#faf8ff;border:1px solid #ddd;border-radius:10px;padding:12px;margin-bottom:8px;'
+      },
+        $('div', { style: 'display:flex;justify-content:space-between;' },
+          $('strong', { textContent: `${fb.name} (${fb.role || 'Guest'})` }),
+          $('button', {
+            style: 'padding:2px 8px;font-size:12px;background:var(--r);color:#fff;',
+            textContent: 'Delete',
+            onclick: async () => {
+              await api('admin/del-feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: fb.id }) });
+              loadAdminFeedback();
+            }
+          })
+        ),
+        $('p', { style: 'font-size:13px;color:#555;margin:4px 0;' }, `Useful: ${fb.r_useful}★ · Games: ${fb.r_games}★ · Speaking: ${fb.r_speaking}★`),
+        fb.comment ? $('p', { style: 'font-size:14px;color:#222;margin-top:4px;' }, `"${fb.comment}"`) : null
+      ))
+    );
+  };
+
+  wrap.append(
+    logoutBtn,
+    $('h2', { textContent: '🔐 Exhibition Administrator Panel' }),
+    $('p', { textContent: 'Configure announcement banner, exam timers, pass mark criteria, and manage student submissions.' }),
+
+    $('h3', { style: 'margin-top:18px;', textContent: 'Top Announcement Banner' }),
+    bannerInp,
+
+    $('div', { style: 'display:flex;gap:12px;' },
+      $('div', { style: 'flex:1;' }, $('h3', { textContent: 'Pass Accuracy (%)' }), passInp),
+      $('div', { style: 'flex:1;' }, $('h3', { textContent: 'Session Timer (Seconds)' }), timerInp)
+    ),
+    saveConfigBtn,
+
+    $('hr', { style: 'margin:24px 0;border:0;border-top:2px dashed #ddd;' }),
+    $('h3', { textContent: 'Speaking Pack Sentences Editor (One per line)' }),
+    packSelect,
+    sentencesArea,
+    savePackBtn,
+
+    $('hr', { style: 'margin:24px 0;border:0;border-top:2px dashed #ddd;' }),
+    scoresArea,
+
+    $('hr', { style: 'margin:24px 0;border:0;border-top:2px dashed #ddd;' }),
+    feedbackArea
+  );
+
+  loadPackIntoEditor();
+  loadAdminScores();
+  loadAdminFeedback();
+  return wrap;
+}
+
+// ─── INITIALIZATION ───────────────────────────────────────────────────────────
+function boot() {
+  initHeader();
+
+  // Populate navigation buttons immediately
+  N.replaceChildren();
+  Object.keys(TABS).forEach(name => {
+    const btn = $('button', {
+      textContent: name,
+      dataset: { tab: name },
+      onclick: () => go(name)
+    });
+    N.appendChild(btn);
+  });
+
+  // Render initial view immediately so user doesn't wait for API!
+  go('Careers');
+
+  // Fetch optional cloud config in background without blocking
+  api('config')
+    .then(res => {
+      if (res && !res.error) {
+        CF = { ...CF, ...res };
+        updateBannerAndTimer();
+      }
+    })
+    .catch(() => {});
+}
+
+// Start immediately on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot);
+} else {
+  boot();
+}
+</script>
+</body>
+</html>
