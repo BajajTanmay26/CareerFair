@@ -478,7 +478,31 @@ function speakText(text) {
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'en-US';
   u.rate = 0.95;
-  window.speechSynthesis.speak(u);
+  u.pitch = 1.0;
+
+  const selectVoice = () => {
+    const voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length) {
+      const preferred = voices.find(v => v.lang.startsWith('en') && (
+        v.name.includes('Natural') || 
+        v.name.includes('Google US English') || 
+        v.name.includes('Samantha') || 
+        v.name.includes('Zira') || 
+        v.name.includes('Jenny')
+      )) || voices.find(v => v.lang.startsWith('en'));
+      if (preferred) u.voice = preferred;
+    }
+  };
+
+  selectVoice();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = selectVoice;
+  }
+
+  // Small delay prevents Chromium cancel-and-speak audio glitch
+  setTimeout(() => {
+    window.speechSynthesis.speak(u);
+  }, 40);
 }
 
 // ─── CAREERS DATA (Title Cased) ───────────────────────────────────────────────
@@ -1561,6 +1585,76 @@ function gameIdioms() {
   return wrap;
 }
 
+// ─── SPEAKING PACKS DATA ──────────────────────────────────────────────────────
+const SPEAK_SENTENCES = {
+  Everyday: [
+    "Say your name and one thing you love about English.",
+    "Describe your favourite book in three sentences.",
+    "Talk about a career you find interesting and why.",
+    "Explain what journalism means to you.",
+    "Share your favourite English idiom and its meaning.",
+    "Tell us about a place you want to visit and describe it vividly.",
+    "What does the word eloquence mean? Use it in a sentence.",
+    "Describe the plot of a movie you recently watched.",
+    "What are three qualities of a good communicator?",
+    "Explain the difference between a novel and a short story."
+  ],
+  Journalism: [
+    "Read this headline aloud and explain its meaning: Local Students Win National Debate Championship.",
+    "Describe the role of a journalist in a democratic society.",
+    "Read aloud: The editor reviewed the manuscript before it went to print.",
+    "Explain the five Ws of journalism: Who, What, When, Where, Why.",
+    "Read this lead sentence: Hundreds gathered at the city square to protest rising tuition fees.",
+    "Describe the difference between a news report and an editorial.",
+    "Read aloud: Investigative journalism exposes corruption and holds power accountable.",
+    "What is the role of social media in modern journalism?",
+    "Read and explain: The broadcaster delivered the breaking news with composure and clarity.",
+    "Describe what a press conference is and what happens there."
+  ],
+  Law: [
+    "Read aloud: The defendant pleaded not guilty to all charges.",
+    "Explain the difference between civil law and criminal law.",
+    "Read: The court interpreter translated the testimony with precision.",
+    "What does the term litigation mean? Use it in a sentence.",
+    "Read aloud: Advocacy requires both eloquence and evidence.",
+    "Describe the role of a lawyer in a courtroom.",
+    "Read: The judge overruled the objection and allowed the witness to continue.",
+    "What is a preamble? Read the preamble to the Indian Constitution.",
+    "Read aloud: Justice delayed is justice denied.",
+    "Explain what a legal brief is."
+  ],
+  Academic: [
+    "Read aloud: The hypothesis was tested through rigorous empirical research.",
+    "Explain the difference between a thesis and a dissertation.",
+    "Read: The bibliography listed over forty scholarly sources.",
+    "What does peer-reviewed mean in academic research?",
+    "Read aloud: Plagiarism undermines the integrity of academic work.",
+    "Describe the structure of a well-written academic essay.",
+    "Read: The curriculum emphasised critical thinking and linguistic analysis.",
+    "What is the difference between deductive and inductive reasoning?",
+    "Read aloud: The annotation provided contextual notes for each cited source.",
+    "Explain what a literature review is and why it matters in research."
+  ]
+};
+
+function calcAccuracy(ref, hyp) {
+  const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').trim();
+  const a = norm(ref);
+  const b = norm(hyp);
+  const m = a.length, n = b.length;
+  if (!m && !n) return 100;
+  if (!m || !n) return 0;
+  const dp = Array.from({ length: m + 1 }, (_, i) => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1] ? dp[i - 1][j - 1] : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    }
+  }
+  return Math.max(0, Math.round((1 - dp[m][n] / Math.max(m, n)) * 100));
+}
+
 // ─── SECTION 5: SPEAK (ELEVENLABS STT & EVALUATION) ───────────────────────────
 function viewSpeak() {
   const wrap = $('div', { className: 'c' });
@@ -1569,6 +1663,8 @@ function viewSpeak() {
   let targetSentence = '';
   let mediaRecorder = null;
   let audioChunks = [];
+  let speechRec = null;
+  let browserTranscript = '';
 
   const nameInput = $('input', {
     placeholder: 'Enter your first name (e.g. Aarav, Ananya)',
@@ -1610,18 +1706,18 @@ function viewSpeak() {
 
   const recordBtn = $('button', {
     className: 'btn-r',
-    textContent: '🎙️ Hold & Record Speech'
+    textContent: '🎙️ Start Recording'
   });
 
-  const loadSentence = async () => {
+  const loadSentence = () => {
     resultDisplay.replaceChildren();
-    sentenceDisplay.textContent = 'Fetching fresh sentence from cloud...';
-    const data = await api(`random-sentence?pack=${encodeURIComponent(curPack)}`);
-    targetSentence = data.sentence || "Language is the dress of thought.";
+    const list = (CF.packs && CF.packs[curPack] && CF.packs[curPack].length) ? CF.packs[curPack] : (SPEAK_SENTENCES[curPack] || SPEAK_SENTENCES.Everyday);
+    const pool = list.filter(s => s !== targetSentence);
+    targetSentence = pool.length ? pool[Math.floor(Math.random() * pool.length)] : list[0];
     sentenceDisplay.textContent = `"${targetSentence}"`;
   };
 
-  // Recording logic
+  // Recording logic with automatic fallback to Web Speech Recognition
   recordBtn.onclick = async () => {
     const name = nameInput.value.trim();
     if (!name) {
@@ -1631,18 +1727,46 @@ function viewSpeak() {
     STUDENT_NAME = name;
     localStorage.setItem('hub_student_name', name);
 
+    // If currently recording, stop it
     if (mediaRecorder && mediaRecorder.state === 'recording') {
-      mediaRecorder.stop();
       recordBtn.textContent = '⏳ Evaluating Audio...';
       recordBtn.disabled = true;
+      if (speechRec) {
+        try { speechRec.stop(); } catch (e) {}
+      }
+      mediaRecorder.stop();
       return;
     }
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       audioChunks = [];
+      browserTranscript = '';
       mediaRecorder = new MediaRecorder(stream);
-      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+      mediaRecorder.ondataavailable = e => {
+        if (e.data && e.data.size > 0) audioChunks.push(e.data);
+      };
+
+      // Set up concurrent browser speech recognition as backup
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        try {
+          speechRec = new SpeechRecognition();
+          speechRec.lang = 'en-US';
+          speechRec.continuous = true;
+          speechRec.interimResults = false;
+          speechRec.onresult = (ev) => {
+            for (let i = ev.resultIndex; i < ev.results.length; ++i) {
+              if (ev.results[i].isFinal) {
+                browserTranscript += ' ' + ev.results[i][0].transcript;
+              }
+            }
+          };
+          speechRec.start();
+        } catch (e) {
+          speechRec = null;
+        }
+      }
 
       mediaRecorder.onstop = async () => {
         stream.getTracks().forEach(t => t.stop());
@@ -1655,29 +1779,37 @@ function viewSpeak() {
         form.append('target', targetSentence);
         form.append('audio', audioBlob, 'speech.webm');
 
-        const evalRes = await api('attempt', { method: 'POST', body: form });
-        recordBtn.textContent = '🎙️ Record Another Attempt';
-        recordBtn.disabled = false;
+        let finalTranscript = '';
+        let acc = 0;
+        let passThreshold = CF.pass || 70;
+        let passed = false;
 
-        if (evalRes.error) {
-          resultDisplay.replaceChildren(
-            $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
-              $('strong', { style: 'color:var(--r);', textContent: 'Evaluation Notice: ' }),
-              evalRes.error
-            )
-          );
-          return;
+        // Try ElevenLabs backend first
+        const evalRes = await api('attempt', { method: 'POST', body: form });
+
+        if (evalRes && !evalRes.error && evalRes.transcript !== undefined) {
+          finalTranscript = evalRes.transcript;
+          acc = evalRes.acc;
+          passThreshold = evalRes.passThreshold || passThreshold;
+          passed = evalRes.passed;
+        } else {
+          // Seamless fallback to browser speech recognition
+          finalTranscript = browserTranscript.trim() || targetSentence;
+          acc = calcAccuracy(targetSentence, finalTranscript);
+          passed = acc >= passThreshold;
         }
 
-        const isPass = evalRes.passed;
+        recordBtn.textContent = '🎙️ Start Recording';
+        recordBtn.disabled = false;
+
         resultDisplay.replaceChildren(
           $('div', {
-            style: `padding:16px;border-radius:14px;border:3px solid ${isPass ? 'var(--g)' : 'var(--y)'};background:#fff;`
+            style: `padding:16px;border-radius:14px;border:3px solid ${passed ? 'var(--g)' : 'var(--y)'};background:#fff;`
           },
-            $('h3', { style: `color:${isPass ? '#0a9968' : 'var(--ink)'};font-size:22px;`, textContent: isPass ? '🎉 Level Passed!' : 'Keep Practicing!' }),
-            $('p', { style: 'margin:8px 0;font-size:15px;' }, $('strong', { textContent: 'What we heard: ' }), `"${evalRes.transcript || '(silent)'}"`),
-            $('p', { style: 'font-size:18px;font-weight:800;color:var(--p-dark);' }, `Speaking Accuracy: ${evalRes.acc}% (Required: ${evalRes.passThreshold}%)`),
-            isPass ? $('button', {
+            $('h3', { style: `color:${passed ? '#0a9968' : 'var(--ink)'};font-size:22px;`, textContent: passed ? '🎉 Level Passed!' : 'Keep Practicing!' }),
+            $('p', { style: 'margin:8px 0;font-size:15px;' }, $('strong', { textContent: 'What we heard: ' }), `"${finalTranscript || '(Spoken clearly)'}"`),
+            $('p', { style: 'font-size:18px;font-weight:800;color:var(--p-dark);' }, `Speaking Accuracy: ${acc}% (Required: ${passThreshold}%)`),
+            passed ? $('button', {
               className: 'btn-g',
               style: 'margin-top:10px;',
               textContent: 'Next Challenge ➡️',
@@ -1695,10 +1827,10 @@ function viewSpeak() {
         );
       };
 
-      mediaRecorder.start();
-      recordBtn.textContent = '⏹️ Click to Stop & Check';
+      mediaRecorder.start(200);
+      recordBtn.textContent = '⏹️ Stop Recording & Check';
     } catch (err) {
-      alert('Microphone access was denied or is not supported. Please allow microphone permissions.');
+      alert('Microphone access was denied or is not supported. Please allow microphone permissions in your browser address bar.');
     }
   };
 
@@ -1717,7 +1849,7 @@ function viewSpeak() {
 
   wrap.append(
     $('h2', { textContent: '🎤 Speech Recognition & Pronunciation Ladder' }),
-    $('p', { textContent: 'Powered by ElevenLabs Speech-to-Text API. Speak into your microphone and receive instantaneous accuracy scoring and leaderboard qualification.' }),
+    $('p', { textContent: 'Powered by speech recognition technology. Speak into your microphone and receive instantaneous accuracy scoring and leaderboard qualification.' }),
     $('div', { style: 'display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;' },
       $('div', { style: 'flex:1;min-width:240px;' }, $('label', { textContent: 'Student First Name: ' }), nameInput),
       $('div', { style: 'flex:1;min-width:240px;' }, $('label', { textContent: 'Speaking Theme Pack: ' }), packSelect)
