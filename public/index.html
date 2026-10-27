@@ -434,7 +434,16 @@ footer a:hover { text-decoration: underline; }
 <script>
 // ─── UTILITY HELPERS ──────────────────────────────────────────────────────────
 const $ = (t, p = {}, ...k) => {
-  const e = Object.assign(document.createElement(t), p);
+  const e = document.createElement(t);
+  for (const [key, val] of Object.entries(p)) {
+    if (key === 'dataset' && typeof val === 'object') {
+      Object.assign(e.dataset, val);
+    } else if (key.startsWith('on') && typeof val === 'function') {
+      e[key] = val;
+    } else {
+      try { e[key] = val; } catch (err) { e.setAttribute(key, val); }
+    }
+  }
   k.forEach(x => {
     if (x === null || x === undefined) return;
     if (typeof x === 'string' || typeof x === 'number') e.appendChild(document.createTextNode(x));
@@ -2115,9 +2124,9 @@ function boot() {
   Object.keys(TABS).forEach(name => {
     const btn = $('button', {
       textContent: name,
-      dataset: { tab: name },
       onclick: () => go(name)
     });
+    btn.dataset.tab = name;
     N.appendChild(btn);
   });
 
