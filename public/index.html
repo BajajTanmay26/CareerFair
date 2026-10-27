@@ -1585,144 +1585,73 @@ function gameIdioms() {
   return wrap;
 }
 
-// ─── DYNAMIC AI ENGLISH SENTENCE GENERATOR ────────────────────────────────────
-const SENTENCE_TEMPLATES = {
-  Everyday: {
-    openers: [
-      "In modern society, effective communication requires",
-      "Reading diverse literary genres consistently enhances",
-      "When expressing complex opinions in a discussion, one must",
-      "The true power of clear articulation lies in",
-      "Passionate writers and storytellers often find that",
-      "Developing a rich and expressive vocabulary enables individuals to",
-      "Active listening is just as crucial as speaking when",
-      "Language serves as a profound reflection of",
-      "Engaging regularly with classical and contemporary literature broadens",
-      "A thoughtful conversation between differing viewpoints always demands"
-    ],
-    cores: [
-      "patience, mutual empathy, and linguistic precision",
-      "both emotional sensitivity and intellectual curiosity",
-      "an appreciation for subtle emotional nuances",
-      "the courage to question assumptions and articulate fresh insights",
-      "a dedicated habit of disciplined creative thought",
-      "a keen awareness of tone, cadence, and audience perception",
-      "the balance between concise expression and vivid imagery",
-      "a deep curiosity about cultural traditions and global narratives"
-    ],
-    endings: [
-      "in our increasingly interconnected world.",
-      "during collaborative academic and personal endeavors.",
-      "whenever challenging ideas are debated openly.",
-      "across all spheres of everyday personal life.",
-      "for anyone aspiring to lead and inspire others.",
-      "to cultivate meaningful mutual understanding."
-    ]
-  },
-  Journalism: {
-    openers: [
-      "The investigative correspondent published a front-page exposé that",
-      "During the high-stakes press conference, reporters critically questioned",
-      "The chief editorial board thoroughly examined the implications of",
-      "Digital media platforms have fundamentally transformed how journalists report",
-      "A reliable news organization must always adhere to rigorous ethics when",
-      "Foreign correspondents stationed in volatile regions frequently risk danger to",
-      "The veteran broadcaster delivered the breaking headline with exceptional composure as",
-      "Fact-checkers worked tirelessly through the night to verify sources before",
-      "Investigative documentary filmmakers rely on extensive archival records to",
-      "A well-crafted news feature balances objective data with human narratives to"
-    ],
-    cores: [
-      "uncovered hidden financial irregularities within the municipal agency",
-      "scrutinized the contradictory statements issued by government spokespersons",
-      "highlighted the economic disparities affecting rural agricultural communities",
-      "investigated allegations of environmental negligence along the industrial corridor",
-      "illuminated the quiet heroism of community frontline emergency volunteers",
-      "analyzed the geopolitical fallout from the recent bilateral trade negotiations",
-      "explored how artificial intelligence is transforming contemporary newsrooms",
-      "documented the grassroots movement striving for broader educational access"
-    ],
-    endings: [
-      "before the final Sunday edition went to print.",
-      "in accordance with highest standards of public interest.",
-      "despite intense pushback from powerful corporate lobbyists.",
-      "while upholding the journalistic principles of truth and fairness.",
-      "to ensure citizens remain accurately and impartially informed.",
-      "across multiple global broadcast and streaming networks."
-    ]
-  },
-  Law: {
-    openers: [
-      "The senior advocate presented a compelling opening statement arguing that",
-      "During the appellate hearing, the bench scrutinized whether the statute violated",
-      "Constitutional jurisprudence emphasizes that procedural fairness must always",
-      "The legal brief meticulously cited three decades of supreme court precedents to",
-      "Cross-examination requires an astute attorney to identify logical fallacies when",
-      "The dispute resolution tribunal urged both corporate entities to consider",
-      "Fundamental statutory rights established under constitutional law cannot be",
-      "The public prosecutor introduced forensic documentary evidence demonstrating that",
-      "Judicial review serves as an indispensable check on legislative authority whenever",
-      "Meticulous legal drafting eliminates contractual ambiguities so that"
-    ],
-    cores: [
-      "substantive equality and individual liberty are safeguarded unconditionally",
-      "the binding contractual obligations were breached without lawful justification",
-      "the prosecution had failed to establish guilt beyond a reasonable doubt",
-      "every citizen receives adequate and competent legal representation",
-      "arbitrary governmental actions are restrained by the rule of law",
-      "intellectual property protections are balanced with equitable public access",
-      "the testimony of the primary witness was corroborated by circumstantial records",
-      "statutory interpretation aligns with the original legislative intent"
-    ],
-    endings: [
-      "pursuant to the established provisions of the Constitution.",
-      "in accordance with statutory provisions enacted by Parliament.",
-      "to prevent any miscarriage of substantive justice.",
-      "as affirmed by unanimous judicial bench rulings.",
-      "before the high court adjourns for the winter recess.",
-      "for the preservation of legal integrity and institutional trust."
-    ]
-  },
-  Academic: {
-    openers: [
-      "The interdisciplinary research symposium concluded that empirical methodologies must",
-      "Contemporary linguistic scholars hypothesize that structural syntax shifts reflect",
-      "A comprehensive review of the scholarly literature reveals significant correlation between",
-      "The doctoral thesis rigorously examined the socio-economic determinants of",
-      "Epistemological inquiries in contemporary philosophy continuously challenge the notion that",
-      "The peer-reviewed monograph demonstrated through qualitative field data that",
-      "Academic researchers must preserve intellectual rigor and methodology when",
-      "Comparative literary analysis juxtaposes classical tragic motifs against",
-      "The university ethics committee emphasized that academic integrity requires",
-      "The linguistic nuances observed in regional vernacular dialects underscore"
-    ],
-    cores: [
-      "differentiate conclusively between causal mechanisms and coincidental phenomena",
-      "interrogate historical biases embedded within traditional textbook curricula",
-      "integrate qualitative ethnography with quantitative econometric modeling",
-      "trace the evolutionary lineage of post-colonial narrative structures",
-      "evaluate the pedagogical efficacy of interactive digital learning modules",
-      "scrutinize the validity of hypotheses regarding language acquisition in adolescents",
-      "formulate robust theoretical frameworks to explain cultural paradigm shifts",
-      "reconcile conflicting anthropological interpretations of ancient manuscripts"
-    ],
-    endings: [
-      "across international academic journals and research faculties.",
-      "supported by extensive archival citations and primary source evidence.",
-      "to advance scholarly consensus within the humanities discipline.",
-      "published under the auspices of the university press.",
-      "thereby establishing a valuable precedent for prospective inquiries.",
-      "with meticulous fidelity to rigorous scientific conventions."
-    ]
-  }
+// ─── DYNAMIC AI ENGLISH SENTENCE GENERATOR (Bite-Sized & Natural) ───────────
+const SHORT_SENTENCES = {
+  Everyday: [
+    "Reading books every day improves your vocabulary and focus.",
+    "Clear communication requires patience, empathy, and active listening.",
+    "Stories have the power to connect people across different cultures.",
+    "A confident speaker knows how to choose the right words.",
+    "Learning new languages expands the way we see the world.",
+    "Writing short essays helps organize your daily thoughts.",
+    "Good conversations always begin with curiosity and an open mind.",
+    "Language is the dress of thought and the bridge between minds.",
+    "Practicing speech aloud builds lasting confidence and poise.",
+    "Words spoken with kindness can inspire an entire community.",
+    "A rich vocabulary helps you express exactly what you feel.",
+    "Every good book teaches us something new about human nature.",
+    "Clear writing is simply the result of clear and orderly thinking.",
+    "Speaking clearly in front of an audience takes steady practice.",
+    "A thoughtful question is often more valuable than an easy answer."
+  ],
+  Journalism: [
+    "The reporter verified all key facts before publishing the headline.",
+    "A responsible journalist writes with fairness, accuracy, and balance.",
+    "The editor reviewed the draft article for clarity and tone.",
+    "Breaking news requires speed, accuracy, and professional composure.",
+    "Interviews allow reporters to give voice to ordinary citizens.",
+    "Freedom of the press is essential for an informed democracy.",
+    "Photojournalists capture moments that tell a complete story.",
+    "Good reporters always protect the confidentiality of their sources.",
+    "An engaging lead sentence hooks the reader from the very start.",
+    "Digital media allows news to travel around the globe in seconds.",
+    "Investigative journalism holds powerful organizations accountable.",
+    "Clear headlines help readers understand the core news story quickly.",
+    "A balanced news report presents multiple perspectives on the issue.",
+    "Broadcasters practice daily to speak with clarity and steady rhythm."
+  ],
+  Law: [
+    "The advocate presented compelling evidence to support the case.",
+    "Clear legal drafting prevents misunderstanding in contracts.",
+    "The judge listened attentively to both sides of the legal dispute.",
+    "Advocacy requires persuasive rhetoric and sound constitutional logic.",
+    "Justice is served when individual rights are protected equally.",
+    "A skilled attorney asks precise questions during examination.",
+    "Court proceedings must always adhere to the due process of law.",
+    "The legal brief cited key precedents established by the court.",
+    "Mediation helps resolve complex disputes outside the courtroom.",
+    "Understanding statutory rights empowers citizens in daily life.",
+    "The preamble outlines the core values of the Indian Constitution.",
+    "Honesty and integrity are the cornerstone of the legal profession."
+  ],
+  Academic: [
+    "Critical thinking enables students to evaluate complex arguments.",
+    "The researcher analyzed historical archives with meticulous care.",
+    "A strong thesis statement guides the reader through the paper.",
+    "Careful syntax and diction elevate the quality of scholarly essays.",
+    "Scholars rely on peer review to ensure academic integrity.",
+    "Understanding word origins sheds light on modern English meanings.",
+    "Literary critique explores the deeper motifs within a classic novel.",
+    "A thorough literature review surveys existing scholarly research.",
+    "Clear hypotheses allow scientists to test ideas with precision.",
+    "Academic seminars encourage lively debate and intellectual growth.",
+    "Consistent study habits lead to academic excellence and mastery."
+  ]
 };
 
 function generateDynamicSentence(pack) {
-  const p = SENTENCE_TEMPLATES[pack] || SENTENCE_TEMPLATES.Everyday;
-  const op = p.openers[Math.floor(Math.random() * p.openers.length)];
-  const co = p.cores[Math.floor(Math.random() * p.cores.length)];
-  const en = p.endings[Math.floor(Math.random() * p.endings.length)];
-  return `${op} ${co} ${en}`;
+  const pool = SHORT_SENTENCES[pack] || SHORT_SENTENCES.Everyday;
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 function calcAccuracy(ref, hyp) {
