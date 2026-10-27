@@ -1667,7 +1667,7 @@ function viewSpeak() {
   let browserTranscript = '';
 
   const nameInput = $('input', {
-    placeholder: 'Enter your first name (e.g. Aarav, Ananya)',
+    placeholder: 'Enter your name',
     value: STUDENT_NAME,
     maxLength: 30
   });
@@ -2032,12 +2032,12 @@ function viewFeedback() {
   return wrap;
 }
 
-// ─── SECTION 8: ADMIN PORTAL (PASSWORD: careers2026) ──────────────────────────
+// ─── SECTION 8: ADMIN PORTAL ──────────────────────────────────────────────────
 function viewAdmin() {
   const wrap = $('div', { className: 'c' });
 
   if (!ADMIN_KEY) {
-    const pwdInput = $('input', { type: 'password', placeholder: 'Enter admin password (careers2026)' });
+    const pwdInput = $('input', { type: 'password', placeholder: 'Enter admin password' });
     const loginMsg = $('p', { style: 'color:var(--r);font-weight:700;margin-top:8px;' });
 
     const handleLogin = async () => {
