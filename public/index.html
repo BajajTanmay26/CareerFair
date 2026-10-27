@@ -939,7 +939,7 @@ function gameFlashCards() {
 
     const progress = $('p', {
       style: 'margin-top:12px;font-size:14px;color:#666;',
-      textContent: `Word ${curIdx + 1} of ${deck.length} (Deck Auto-Randomized) · Total Learned: ${learned.length}`
+      textContent: `Words Learned: ${learned.length}`
     });
 
     cardContainer.replaceChildren(card, ctrls, progress);
