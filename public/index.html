@@ -983,30 +983,42 @@ function gameFlashCards() {
   return wrap;
 }
 
-// ─── GAME B: LIVE WORD CHECK (DICTIONARY API) ─────────────────────────────────
+// ─── GAME B: LIVE WORD CHECK (HIGH-SPEED MULTI-TIER DICTIONARY) ──────────────
 function gameWordCheck() {
   const wrap = $('div', { className: 'c' });
-  const input = $('input', { placeholder: 'Enter an English word (e.g. rhetoric, articulate, ubiquitous)...' });
+  const input = $('input', { placeholder: 'Enter an English word (e.g. for, rhetoric, articulate, ubiquitous)...' });
   const resultDiv = $('div', { style: 'margin-top:16px;' });
 
-  const doCheck = async () => {
-    const q = input.value.trim();
-    if (!q) return;
-    resultDiv.replaceChildren($('p', { textContent: 'Checking dictionary database...' }));
-    const data = await api(`dict/${encodeURIComponent(q)}`);
-    if (data.error || !Array.isArray(data) || !data.length) {
-      resultDiv.replaceChildren(
-        $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
-          $('h3', { style: 'color:var(--r);', textContent: '❌ Word Not Found' }),
-          $('p', { textContent: `"${q}" does not appear in the standard English lexical dictionary. Check spelling and try again.` })
-        )
-      );
-      return;
-    }
+  const CORE_WORDS_CLIENT = {
+    for: { word: "for", pos: "preposition", def: "In support of, directed towards, or serving the purpose of.", ex: "This hub is designed for students exploring English careers." },
+    the: { word: "the", pos: "definite article", def: "Denoting one or more people or things already mentioned or assumed.", ex: "The law requires thorough documentation." },
+    and: { word: "and", pos: "conjunction", def: "Used to connect words, clauses, or sentences.", ex: "Grammar and syntax are essential in writing." },
+    with: { word: "with", pos: "preposition", def: "Accompanied by; possessing; using.", ex: "He argued his case with eloquence and precision." },
+    from: { word: "from", pos: "preposition", def: "Indicating the point in space or time at which an action begins.", ex: "She graduated from Fergusson College in Pune." },
+    in: { word: "in", pos: "preposition", def: "Expressing the situation of something enclosed or included.", ex: "He works in international journalism." },
+    on: { word: "on", pos: "preposition", def: "Physically in contact with; concerning a subject.", ex: "She published an editorial on public education policy." },
+    to: { word: "to", pos: "preposition", def: "Expressing motion or direction toward a location, person, or goal.", ex: "Students travel to college daily." },
+    of: { word: "of", pos: "preposition", def: "Expressing origin, belonging, or composition.", ex: "Brevity is the soul of wit." },
+    as: { word: "as", pos: "conjunction / adverb", def: "Used to indicate comparison or capacity.", ex: "She spoke as an articulate representative." },
+    by: { word: "by", pos: "preposition", def: "Identifying the agent or means of an action.", ex: "The manuscript was reviewed by the editor." },
+    at: { word: "at", pos: "preposition", def: "Expressing location or arrival in time or place.", ex: "The seminar began promptly at noon." },
+    an: { word: "an", pos: "indefinite article", def: "Used before vowel sounds.", ex: "She is an articulate advocate." },
+    a: { word: "a", pos: "indefinite article", def: "Used when mentioning someone or something for the first time.", ex: "He wrote a comprehensive legal brief." },
+    is: { word: "is", pos: "verb", def: "Third person singular present of 'be'.", ex: "Language is the dress of thought." },
+    be: { word: "be", pos: "verb", def: "Exist; occur; have a specified quality.", ex: "Aspire to be a clear and ethical communicator." },
+    are: { word: "are", pos: "verb", def: "Present tense plural of 'be'.", ex: "Students are preparing for entrance exams." },
+    was: { word: "was", pos: "verb", def: "First and third person singular past of 'be'.", ex: "The article was published yesterday." },
+    were: { word: "were", pos: "verb", def: "Past tense plural of 'be'.", ex: "The reporters were on the scene." },
+    will: { word: "will", pos: "modal verb", def: "Expressing future intention, expectation, or certainty.", ex: "Consistent practice will enhance your fluency." },
+    can: { word: "can", pos: "modal verb", def: "Be able to; have the opportunity to.", ex: "Anyone can master persuasive speaking." },
+    but: { word: "but", pos: "conjunction", def: "Used to introduce a contrasting clause.", ex: "The case was complex, but the advocate succeeded." },
+    or: { word: "or", pos: "conjunction", def: "Used to link alternatives.", ex: "You can choose literature or mass media." },
+    not: { word: "not", pos: "adverb", def: "Used with an auxiliary verb or 'be' to form the negative.", ex: "Plagiarism is not permitted." }
+  };
 
-    const entry = data[0];
+  const renderEntry = (entry) => {
     const phon = entry.phonetic || (entry.phonetics && entry.phonetics.find(p => p.text)?.text) || '';
-    const meaning = entry.meanings?.[0]?.definitions?.[0]?.definition || 'No definition available.';
+    const meaning = entry.meanings?.[0]?.definitions?.[0]?.definition || 'Standard English term.';
     const example = entry.meanings?.[0]?.definitions?.[0]?.example || '';
     const pos = entry.meanings?.[0]?.partOfSpeech || 'word';
 
@@ -1026,6 +1038,56 @@ function gameWordCheck() {
         $('span', { className: 'badge badge-g', style: 'margin-top:12px;', textContent: '✅ Verified Valid English Word' })
       )
     );
+  };
+
+  const doCheck = async () => {
+    const q = input.value.trim().toLowerCase();
+    if (!q) return;
+
+    // Check client core words immediately in 0ms!
+    if (CORE_WORDS_CLIENT[q]) {
+      const c = CORE_WORDS_CLIENT[q];
+      renderEntry({
+        word: c.word,
+        phonetic: `/${c.word}/`,
+        meanings: [{ partOfSpeech: c.pos, definitions: [{ definition: c.def, example: c.ex }] }]
+      });
+      return;
+    }
+
+    resultDiv.replaceChildren($('p', { textContent: 'Checking dictionary database...' }));
+    const data = await api(`dict/${encodeURIComponent(q)}`);
+
+    if (data && data.not_found) {
+      resultDiv.replaceChildren(
+        $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
+          $('h3', { style: 'color:var(--r);', textContent: '❌ Word Not Found' }),
+          $('p', { textContent: `"${input.value.trim()}" does not appear in the standard English lexical dictionary. Please verify the spelling and try again.` })
+        )
+      );
+      return;
+    }
+
+    if (data && data.error) {
+      resultDiv.replaceChildren(
+        $('div', { style: 'padding:14px;background:#fff8e6;border:2px solid var(--y);border-radius:12px;' },
+          $('h3', { style: 'color:var(--ink);', textContent: '⚠️ Service Notice' }),
+          $('p', { textContent: 'The dictionary database is currently experiencing high network traffic. Please try again in a few moments.' })
+        )
+      );
+      return;
+    }
+
+    if (Array.isArray(data) && data.length) {
+      renderEntry(data[0]);
+    } else {
+      resultDiv.replaceChildren(
+        $('div', { style: 'padding:14px;background:#ffeef0;border:2px solid var(--r);border-radius:12px;' },
+          $('h3', { style: 'color:var(--r);', textContent: '❌ Word Not Found' }),
+          $('p', { textContent: `"${input.value.trim()}" was not found. Please check spelling.` })
+        )
+      );
+    }
   };
 
   input.addEventListener('keydown', e => { if (e.key === 'Enter') doCheck(); });
@@ -1352,6 +1414,47 @@ function gameCrossword() {
         inp.dataset.r = r;
         inp.dataset.c = c;
         inp.dataset.char = char;
+        inp.autocomplete = 'off';
+
+        inp.addEventListener('focus', () => { inp.select(); });
+
+        inp.addEventListener('input', () => {
+          inp.value = inp.value.toUpperCase();
+          if (inp.value) {
+            const idx = inputs.indexOf(inp);
+            if (idx !== -1 && idx < inputs.length - 1) {
+              inputs[idx + 1].focus();
+              inputs[idx + 1].select();
+            }
+          }
+        });
+
+        inp.addEventListener('keydown', (e) => {
+          const idx = inputs.indexOf(inp);
+          const currR = parseInt(inp.dataset.r);
+          const currC = parseInt(inp.dataset.c);
+
+          if (e.key === 'Backspace') {
+            if (!inp.value && idx > 0) {
+              e.preventDefault();
+              inputs[idx - 1].focus();
+              inputs[idx - 1].value = '';
+            }
+          } else if (e.key === 'ArrowRight') {
+            const next = inputs.find(i => parseInt(i.dataset.r) === currR && parseInt(i.dataset.c) > currC);
+            if (next) { e.preventDefault(); next.focus(); next.select(); }
+          } else if (e.key === 'ArrowLeft') {
+            const prev = [...inputs].reverse().find(i => parseInt(i.dataset.r) === currR && parseInt(i.dataset.c) < currC);
+            if (prev) { e.preventDefault(); prev.focus(); prev.select(); }
+          } else if (e.key === 'ArrowDown') {
+            const down = inputs.find(i => parseInt(i.dataset.c) === currC && parseInt(i.dataset.r) > currR);
+            if (down) { e.preventDefault(); down.focus(); down.select(); }
+          } else if (e.key === 'ArrowUp') {
+            const up = [...inputs].reverse().find(i => parseInt(i.dataset.c) === currC && parseInt(i.dataset.r) < currR);
+            if (up) { e.preventDefault(); up.focus(); up.select(); }
+          }
+        });
+
         cell.appendChild(inp);
         inputs.push(inp);
       }

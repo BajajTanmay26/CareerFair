@@ -232,26 +232,105 @@ export async function onRequest(ctx) {
   if (path.startsWith('/dict/') && method === 'GET') {
     const word = decodeURIComponent(path.replace('/dict/', '').trim().toLowerCase());
     if (!word) return err('Word required');
-    // Check kv cache
+
+    // 1. Instant 0ms Core English Function & Vocabulary Words
+    const CORE_WORDS = {
+      for: { word: "for", pos: "preposition", def: "In support of, directed towards, or serving the purpose of.", ex: "This hub is designed for students exploring English careers." },
+      the: { word: "the", pos: "definite article", def: "Denoting one or more people or things already mentioned or assumed.", ex: "The law requires thorough documentation." },
+      and: { word: "and", pos: "conjunction", def: "Used to connect words, clauses, or sentences.", ex: "Grammar and syntax are essential in writing." },
+      with: { word: "with", pos: "preposition", def: "Accompanied by; possessing; using.", ex: "He argued his case with eloquence and precision." },
+      from: { word: "from", pos: "preposition", def: "Indicating the point in space or time at which an action begins.", ex: "She graduated from Fergusson College in Pune." },
+      in: { word: "in", pos: "preposition", def: "Expressing the situation of something enclosed or included.", ex: "He works in international journalism." },
+      on: { word: "on", pos: "preposition", def: "Physically in contact with; concerning a subject.", ex: "She published an editorial on public education policy." },
+      to: { word: "to", pos: "preposition", def: "Expressing motion or direction toward a location, person, or goal.", ex: "Students travel to college daily." },
+      of: { word: "of", pos: "preposition", def: "Expressing origin, belonging, or composition.", ex: "Brevity is the soul of wit." },
+      as: { word: "as", pos: "conjunction / adverb", def: "Used to indicate comparison or capacity.", ex: "She spoke as an articulate representative." },
+      by: { word: "by", pos: "preposition", def: "Identifying the agent or means of an action.", ex: "The manuscript was reviewed by the editor." },
+      at: { word: "at", pos: "preposition", def: "Expressing location or arrival in time or place.", ex: "The seminar began promptly at noon." },
+      an: { word: "an", pos: "indefinite article", def: "Used before vowel sounds.", ex: "She is an articulate advocate." },
+      a: { word: "a", pos: "indefinite article", def: "Used when mentioning someone or something for the first time.", ex: "He wrote a comprehensive legal brief." },
+      is: { word: "is", pos: "verb", def: "Third person singular present of 'be'.", ex: "Language is the dress of thought." },
+      be: { word: "be", pos: "verb", def: "Exist; occur; have a specified quality.", ex: "Aspire to be a clear and ethical communicator." },
+      are: { word: "are", pos: "verb", def: "Present tense plural of 'be'.", ex: "Students are preparing for entrance exams." },
+      was: { word: "was", pos: "verb", def: "First and third person singular past of 'be'.", ex: "The article was published yesterday." },
+      were: { word: "were", pos: "verb", def: "Past tense plural of 'be'.", ex: "The reporters were on the scene." },
+      will: { word: "will", pos: "modal verb", def: "Expressing future intention, expectation, or certainty.", ex: "Consistent practice will enhance your fluency." },
+      can: { word: "can", pos: "modal verb", def: "Be able to; have the opportunity to.", ex: "Anyone can master persuasive speaking." },
+      but: { word: "but", pos: "conjunction", def: "Used to introduce a contrasting clause.", ex: "The case was complex, but the advocate succeeded." },
+      or: { word: "or", pos: "conjunction", def: "Used to link alternatives.", ex: "You can choose literature or mass media." },
+      not: { word: "not", pos: "adverb", def: "Used with an auxiliary verb or 'be' to form the negative.", ex: "Plagiarism is not permitted." }
+    };
+
+    if (CORE_WORDS[word]) {
+      const c = CORE_WORDS[word];
+      return json([{
+        word: c.word,
+        phonetic: `/${c.word}/`,
+        meanings: [{
+          partOfSpeech: c.pos,
+          definitions: [{ definition: c.def, example: c.ex }]
+        }]
+      }]);
+    }
+
+    // 2. Check KV Cache
     const cacheKey = `dict_${word}`;
     const cached = await kvGet(db, cacheKey, '');
     if (cached) {
       try { return json(JSON.parse(cached)); } catch {}
     }
+
+    // 3. Multi-tier High Speed Lookup (Free Dictionary API -> Wiktionary CDN)
     try {
-      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
-      const data = await res.json();
-      if (res.ok) {
-        // Cache for ~24h (we just store it — D1 has no TTL so it persists)
-        await kvSet(db, cacheKey, JSON.stringify(data));
-      }
-      return new Response(JSON.stringify(data), {
-        status: res.status,
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`, {
+        signal: controller.signal,
+        headers: { 'User-Agent': 'CloudflarePages-EnglishHub/1.0' }
       });
-    } catch (e) {
-      return err(`Dictionary fetch failed: ${e.message}`, 502);
-    }
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) {
+          await kvSet(db, cacheKey, JSON.stringify(data));
+          return json(data);
+        }
+      }
+    } catch (e) {}
+
+    // Fallback: Wiktionary REST API (Wikimedia global CDN, zero rate-limit)
+    try {
+      const wikRes = await fetch(`https://en.wiktionary.org/api/rest_v1/page/definition/${encodeURIComponent(word)}`, {
+        headers: { 'User-Agent': 'CloudflarePages-EnglishHub/1.0 (educational)' }
+      });
+      if (wikRes.ok) {
+        const wikData = await wikRes.json();
+        if (wikData.en && wikData.en.length) {
+          const firstSection = wikData.en[0];
+          const pos = firstSection.partOfSpeech || 'word';
+          const rawDef = firstSection.definitions?.[0]?.definition || '';
+          const cleanDef = rawDef.replace(/<[^>]+>/g, '').trim();
+          if (cleanDef) {
+            const formatted = [{
+              word: word,
+              phonetic: `/${word}/`,
+              meanings: [{
+                partOfSpeech: pos,
+                definitions: [{
+                  definition: cleanDef,
+                  example: `A recognized English ${pos} in standard usage.`
+                }]
+              }]
+            }];
+            await kvSet(db, cacheKey, JSON.stringify(formatted));
+            return json(formatted);
+          }
+        }
+      }
+    } catch (e) {}
+
+    return json({ not_found: true, word });
   }
 
   // ── POST /feedback ───────────────────────────────────────────────────────
